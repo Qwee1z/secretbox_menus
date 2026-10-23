@@ -1,0 +1,88 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Меню кофейни",
+  "type": "object",
+  "properties": {
+    "$schema": { "type": "string" },
+    "cafe": {
+      "type": "object",
+      "description": "Информация о кофейне",
+      "properties": {
+        "name":    { "type": "string", "description": "Название (в шапке по центру)" },
+        "address": { "type": "string", "description": "Адрес (в шапке слева)" },
+        "city":    { "type": "string" },
+        "hours":   { "type": "string", "description": "Например: до 22:00" },
+        "logo":    { "type": "string", "description": "Ссылка на картинку логотипа" }
+      }
+    },
+    "currency": { "type": "string", "description": "Код валюты: KZT, RUB, USD…", "default": "KZT" },
+    "specials": {
+      "type": "array",
+      "description": "Блок «Сегодня в меню»",
+      "items": {
+        "type": "object",
+        "required": ["item"],
+        "properties": {
+          "label": { "type": "string", "description": "Блюдо дня / Напиток дня / Комбо дня" },
+          "item":  { "type": "string", "description": "id позиции (или её название, если id не задан)" }
+        }
+      }
+    },
+    "items": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/item" }
+    }
+  },
+  "definitions": {
+    "item": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "id":        { "type": "string", "description": "Постоянный идентификатор. Если не задан — используется название" },
+        "name":      { "type": "string" },
+        "category":  {
+          "type": "string",
+          "description": "Раздел из data/categories.json",
+          "enum": ["coffee", "tea", "cocoa", "cold", "breakfast", "hot", "snacks", "desserts", "bakery", "combo", "other"]
+        },
+        "price":     { "type": "number", "description": "Цена (не нужна, если есть sizes)" },
+        "old_price": { "type": ["number", "null"], "description": "Старая цена — показывается зачёркнутой" },
+        "size_ml":   { "type": ["number", "null"], "description": "Объём, мл" },
+        "weight_g":  { "type": ["number", "null"], "description": "Вес, г" },
+        "amount":    { "type": "string", "description": "Объём/вес текстом, если не подходят size_ml/weight_g" },
+        "sizes": {
+          "type": "array",
+          "description": "Варианты размера. КБЖУ указывается для первого — для остальных пересчитывается",
+          "items": {
+            "type": "object",
+            "required": ["price"],
+            "properties": {
+              "label":    { "type": "string", "description": "S / M / L, Сингл / Доппио…" },
+              "size_ml":  { "type": "number" },
+              "weight_g": { "type": "number" },
+              "amount":   { "type": "string" },
+              "price":    { "type": "number" }
+            }
+          }
+        },
+        "short":       { "type": "string", "description": "Краткое описание на карточке" },
+        "description": { "type": "string", "description": "Подробное описание в окне позиции" },
+        "emoji":       { "type": "string", "description": "Картинка-эмодзи. По умолчанию — эмодзи раздела" },
+        "image":       { "type": "string", "description": "Ссылка на фото (заменяет эмодзи)" },
+        "badge":       { "type": "string", "description": "Метка: Хит, Новинка…" },
+        "nutrition": {
+          "type": "object",
+          "properties": {
+            "kcal":    { "type": "number" },
+            "protein": { "type": "number" },
+            "fat":     { "type": "number" },
+            "carbs":   { "type": "number" }
+          }
+        },
+        "ingredients": { "type": "array", "items": { "type": "string" } },
+        "prep_min":    { "type": "number", "description": "Время приготовления, мин. По умолчанию — из раздела" },
+        "available":   { "type": "boolean", "description": "false — позиция скрыта из меню" }
+      }
+    }
+  }
+}

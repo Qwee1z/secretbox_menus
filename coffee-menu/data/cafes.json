@@ -1,0 +1,8 @@
+{
+  "cafes": [
+    { "id": "ayu_menu", "file": "cafes/ayu_menu.json" },
+    { "id": "zerno",    "file": "cafes/zerno.json" },
+    { "id": "test",     "file": "cafes/test.json" },
+    { "id": "test1",    "file": "cafes/test1.json" }
+  ]
+}

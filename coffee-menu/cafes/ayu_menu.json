@@ -1,0 +1,310 @@
+{
+  "$schema": "../data/menu.schema.json",
+  "cafe": {
+    "name": "Ayu"
+  },
+  "currency": "KZT",
+  "items": [
+    {
+      "name": "Айс латте печенье соль",
+      "category": "cold",
+      "size_ml": null,
+      "price": 1290,
+      "emoji": "🍪"
+    },
+    {
+      "name": "Айс латте банан-карамель",
+      "category": "cold",
+      "size_ml": null,
+      "price": 1290,
+      "emoji": "🍌"
+    },
+    {
+      "name": "Айс латте фисташковое мороженое",
+      "category": "cold",
+      "size_ml": null,
+      "price": 1290,
+      "emoji": "🍨"
+    },
+    {
+      "name": "Айс американо Цитрус",
+      "category": "cold",
+      "size_ml": null,
+      "price": 1190,
+      "emoji": "🍋"
+    },
+    {
+      "name": "Фрапучино Банан",
+      "category": "cold",
+      "size_ml": null,
+      "price": 1990,
+      "emoji": "🍌"
+    },
+    {
+      "name": "Cherry эспрессо тоник",
+      "category": "cold",
+      "size_ml": null,
+      "price": 1790,
+      "emoji": "🍒"
+    },
+    {
+      "name": "Bumble coffee",
+      "category": "cold",
+      "size_ml": null,
+      "price": 1590,
+      "emoji": "🍊"
+    },
+    {
+      "name": "Айс матча манго",
+      "category": "cold",
+      "size_ml": null,
+      "price": 1790,
+      "emoji": "🥭"
+    },
+    {
+      "name": "Айс матча клубника",
+      "category": "cold",
+      "size_ml": null,
+      "price": 1790,
+      "emoji": "🍓"
+    },
+    {
+      "name": "Айс матча груша",
+      "category": "cold",
+      "size_ml": null,
+      "price": 1790,
+      "emoji": "🍐"
+    },
+    {
+      "name": "Смузи малиновый",
+      "category": "cold",
+      "size_ml": null,
+      "price": 1550,
+      "emoji": "🫐"
+    },
+    {
+      "name": "Смузи Витаминный",
+      "category": "cold",
+      "size_ml": null,
+      "price": 1550,
+      "emoji": "🥝"
+    },
+    {
+      "name": "Bumble matcha",
+      "category": "cold",
+      "size_ml": null,
+      "price": 1590,
+      "emoji": "🍵"
+    },
+    {
+      "name": "Ист-ти Цитрус",
+      "category": "cold",
+      "size_ml": null,
+      "price": 1190,
+      "emoji": "🍋"
+    },
+    {
+      "name": "Ист-ти Ягодный",
+      "category": "cold",
+      "size_ml": null,
+      "price": 1190,
+      "emoji": "🫐"
+    },
+    {
+      "name": "Эспрессо",
+      "category": "coffee",
+      "size_ml": null,
+      "price": 700,
+      "emoji": "☕"
+    },
+    {
+      "name": "Американо",
+      "category": "coffee",
+      "size_ml": null,
+      "price": 890,
+      "emoji": "☕"
+    },
+    {
+      "name": "Флэт-Уайт",
+      "category": "coffee",
+      "size_ml": null,
+      "price": 1190,
+      "emoji": "☕"
+    },
+    {
+      "name": "Капучино",
+      "category": "coffee",
+      "size_ml": null,
+      "price": 1090,
+      "emoji": "☕"
+    },
+    {
+      "name": "Латте",
+      "category": "coffee",
+      "size_ml": null,
+      "price": 1190,
+      "emoji": "🥛"
+    },
+    {
+      "name": "Раф",
+      "category": "coffee",
+      "size_ml": null,
+      "price": 1590,
+      "emoji": "🍦"
+    },
+    {
+      "name": "Доп шот",
+      "category": "coffee",
+      "size_ml": null,
+      "price": 350,
+      "emoji": "☕"
+    },
+    {
+      "name": "Какао",
+      "category": "cocoa",
+      "size_ml": null,
+      "price": 950,
+      "emoji": "🍫"
+    },
+    {
+      "name": "Шоколад",
+      "category": "cocoa",
+      "size_ml": null,
+      "price": 950,
+      "emoji": "🍫"
+    },
+    {
+      "name": "Черный чай",
+      "category": "tea",
+      "size_ml": null,
+      "price": 350,
+      "emoji": "🫖"
+    },
+    {
+      "name": "Зеленый чай",
+      "category": "tea",
+      "size_ml": null,
+      "price": 350,
+      "emoji": "🍵"
+    },
+    {
+      "name": "Глинтвейн",
+      "category": "tea",
+      "size_ml": null,
+      "price": 950,
+      "emoji": "🍷"
+    },
+    {
+      "name": "Клубника апельсин",
+      "category": "tea",
+      "size_ml": null,
+      "price": 950,
+      "emoji": "🍓"
+    },
+    {
+      "name": "Ташкентский чай",
+      "category": "tea",
+      "size_ml": null,
+      "price": 950,
+      "emoji": "🍋"
+    },
+    {
+      "name": "Марокканский чай",
+      "category": "tea",
+      "size_ml": null,
+      "price": 950,
+      "emoji": "🌿"
+    },
+    {
+      "name": "Облепиха апельсин",
+      "category": "tea",
+      "size_ml": null,
+      "price": 950,
+      "emoji": "🍊"
+    },
+    {
+      "name": "Ягодный чай",
+      "category": "tea",
+      "size_ml": null,
+      "price": 950,
+      "emoji": "🫐"
+    },
+    {
+      "name": "Имбирный чай",
+      "category": "tea",
+      "size_ml": null,
+      "price": 950,
+      "emoji": "🫖"
+    },
+    {
+      "name": "Гляссе",
+      "category": "cold",
+      "size_ml": null,
+      "price": 1590,
+      "emoji": "🍨"
+    },
+    {
+      "name": "Фраппучино",
+      "category": "cold",
+      "size_ml": null,
+      "price": 1790,
+      "emoji": "🥤"
+    },
+    {
+      "name": "Айс Латте",
+      "category": "cold",
+      "size_ml": null,
+      "price": 1190,
+      "emoji": "🧋"
+    },
+    {
+      "name": "Айс Американо",
+      "category": "cold",
+      "size_ml": null,
+      "price": 990,
+      "emoji": "🧊"
+    },
+    {
+      "name": "Бамбл кофе",
+      "category": "cold",
+      "size_ml": null,
+      "price": 1590,
+      "emoji": "🍊"
+    },
+    {
+      "name": "Эспрессо тоник",
+      "category": "cold",
+      "size_ml": null,
+      "price": 1690,
+      "emoji": "🧊"
+    },
+    {
+      "name": "Матча тоник",
+      "category": "cold",
+      "size_ml": null,
+      "price": 1490,
+      "emoji": "🍵"
+    },
+    {
+      "name": "Матча латте",
+      "category": "tea",
+      "size_ml": null,
+      "price": 1300,
+      "emoji": "🍵"
+    },
+    {
+      "name": "Милкшейк",
+      "category": "cold",
+      "size_ml": null,
+      "price": 1250,
+      "emoji": "🥤"
+    },
+    {
+      "name": "Лимонад",
+      "category": "cold",
+      "size_ml": null,
+      "price": 1090,
+      "emoji": "🍋"
+    }
+  ]
+}
