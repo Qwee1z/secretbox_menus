@@ -2,16 +2,17 @@
   'use strict';
 
   // Заполняется после загрузки данных (см. init)
-  let CATEGORIES = [];
-  let CATS = {};          // id раздела → раздел
-  let MENU = null;        // { cafe, currency, items, specials }
+  let STYLES = {};        // общие стили разделов (data/categories.json)
+  let BRAND = null;       // { name, logo } — для экрана выбора кофейни
+  let MENU = null;        // { cafe, currency, categories, items }
+  let CATS = {};          // id раздела → раздел текущей кофейни
   let BY_ID = {};         // id позиции → позиция
   let STORAGE_KEY = '';
   let money = null;
 
   const state = {
     cat: 'all',
-    order: {},            // { 'id:sizeIndex': qty }
+    order: {},            // { 'id:variantIndex': qty }
     dineIn: 'hall',       // 'hall' | 'togo'
     when: 'asap',         // 'asap' | минуты
     stack: [],            // открытые окна: { type: 'product', id, size } | { type: 'order' }
@@ -33,12 +34,15 @@
     const [id, size] = key.split(':');
     return { item: BY_ID[decodeURIComponent(id)], size: Number(size) || 0 };
   };
-  const priceOf = (item, size = 0) => item.sizes ? item.sizes[size].price : item.price;
-  const minPrice = item => item.sizes ? Math.min(...item.sizes.map(s => s.price)) : item.price;
-  const catOf = item => CATS[item.cat] || CATS.other;
+  const priceOf = (item, size = 0) => item.sizes[size].price;
+  const minPrice = item => Math.min(...item.sizes.map(s => s.price));
+  const catOf = item => CATS[item.cat] || STYLES.other;
   const isDrink = item => catOf(item).kind === 'drink';
   const qtyOf = key => state.order[key] || 0;
-  const priceLabel = item => (item.sizes && item.sizes.length > 1 ? 'от ' : '') + fmt(minPrice(item));
+  const priceLabel = item => (item.sizes.length > 1 ? 'от ' : '') + fmt(minPrice(item));
+
+  const SPECIAL_LABEL = { drink: 'Напиток дня', sweet: 'Десерт дня', set: 'Комбо дня' };
+  const specialLabel = item => SPECIAL_LABEL[catOf(item).kind] || 'Блюдо дня';
 
   function makeMoney(currency) {
     try {
@@ -59,7 +63,7 @@
   function orderLines() {
     return Object.entries(state.order)
       .map(([key, qty]) => ({ key, qty, ...parseKey(key) }))
-      .filter(l => l.qty > 0 && l.item && (!l.item.sizes || l.item.sizes[l.size]));
+      .filter(l => l.qty > 0 && l.item && l.item.sizes[l.size]);
   }
   const orderCount = () => orderLines().reduce((s, l) => s + l.qty, 0);
   const orderTotal = () => orderLines().reduce((s, l) => s + priceOf(l.item, l.size) * l.qty, 0);
@@ -73,13 +77,29 @@
 
   // ───────── шаблоны
 
+  // Иконка раздела на цветном фоне; если по ссылке image_url есть фото — оно ложится сверху.
+  // Фото ещё нет — img сам себя убирает, и остаётся иконка.
   function pic(item, cls = '') {
-    if (item.image) {
-      return `<div class="pic photo ${cls}"><img src="${esc(item.image)}" alt="" loading="lazy"></div>`;
-    }
-    const [c1, c2] = catOf(item).colors;
-    const multi = (item.emoji.match(/\p{Extended_Pictographic}/gu) || []).length > 1 ? ' multi' : '';
-    return `<div class="pic ${cls}${multi}" style="--c1:${esc(c1)};--c2:${esc(c2)}"><span>${esc(item.emoji)}</span></div>`;
+    const cat = catOf(item);
+    const [c1, c2] = cat.colors;
+    return `
+      <div class="pic ${cls}" style="--c1:${esc(c1)};--c2:${esc(c2)}">
+        <span>${esc(cat.emoji)}</span>
+        ${item.image ? `<img src="${esc(item.image)}" alt="" loading="lazy" onerror="this.remove()">` : ''}
+      </div>`;
+  }
+
+  const BEAN_MARK = `
+    <svg class="logo-mark" viewBox="0 0 48 48" aria-hidden="true">
+      <circle cx="24" cy="24" r="23" fill="var(--accent)" stroke="none"/>
+      <ellipse cx="24" cy="24" rx="9" ry="13" fill="#fff8f0" stroke="none" transform="rotate(30 24 24)"/>
+      <path d="M19 14c5 5 5 15 10 20" stroke="var(--accent)" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    </svg>`;
+
+  function logo(src, name, cls) {
+    return src
+      ? `<img class="${cls}" src="${esc(src)}" alt="${esc(name)}">`
+      : `<span class="${cls} logo-letter">${esc(name.trim().charAt(0).toUpperCase() || '☕')}</span>`;
   }
 
   // Кнопка «В заказ» или счётчик. Обновляется через updateSlots() без перерисовки карточек.
@@ -105,17 +125,11 @@
   function card(item) {
     return `
       <article class="card" data-open="${esc(item.id)}" tabindex="0" aria-label="${esc(item.name)}">
-        <div class="card-pic">
-          ${pic(item)}
-          ${item.badge ? `<span class="badge">${esc(item.badge)}</span>` : ''}
-        </div>
+        <div class="card-pic">${pic(item)}</div>
         <div class="card-body">
           <h3 class="card-title">${esc(item.name)}</h3>
-          ${item.short ? `<p class="card-short">${esc(item.short)}</p>` : ''}
-          <div class="card-price">
-            <b>${priceLabel(item)}</b>
-            ${item.oldPrice ? `<s>${fmt(item.oldPrice)}</s>` : ''}
-          </div>
+          ${item.desc ? `<p class="card-short">${esc(item.desc)}</p>` : ''}
+          <div class="card-price"><b>${priceLabel(item)}</b></div>
           ${slot(keyOf(item.id), 'card')}
         </div>
       </article>`;
@@ -124,11 +138,11 @@
   // ───────── шапка
 
   function renderHeader(cafe, canSwitch) {
+    const name = cafe ? cafe.name : BRAND.name;
     const addr = cafe && (cafe.address || cafe.city);
     const sub = cafe ? [cafe.address && cafe.city, cafe.hours].filter(Boolean).join(' · ') : '';
     const mapQuery = cafe ? encodeURIComponent([cafe.city, cafe.address].filter(Boolean).join(', ')) : '';
-    const name = cafe ? cafe.name : 'Меню';
-    document.title = cafe ? `${cafe.name} — меню` : 'Выберите кофейню';
+    document.title = cafe ? `${cafe.name} — меню` : BRAND.name;
 
     $('#topbar').innerHTML = `
       ${addr ? `
@@ -140,14 +154,8 @@
           </span>
         </a>` : '<span></span>'}
 
-      <a class="logo" href="${canSwitch ? './' : '#'}" aria-label="${esc(name)}" ${canSwitch ? 'title="Выбрать другую кофейню"' : ''}>
-        ${cafe && cafe.logo
-          ? `<img class="logo-mark" src="${esc(cafe.logo)}" alt="">`
-          : `<svg class="logo-mark" viewBox="0 0 48 48" aria-hidden="true">
-              <circle cx="24" cy="24" r="23" fill="var(--accent)" stroke="none"/>
-              <ellipse cx="24" cy="24" rx="9" ry="13" fill="#fff8f0" stroke="none" transform="rotate(30 24 24)"/>
-              <path d="M19 14c5 5 5 15 10 20" stroke="var(--accent)" stroke-width="2.4" fill="none" stroke-linecap="round"/>
-            </svg>`}
+      <a class="logo" href="${canSwitch ? './' : '#'}" ${canSwitch ? 'title="Выбрать другую кофейню"' : ''}>
+        ${cafe ? logo(cafe.logo, name, 'logo-mark') : BEAN_MARK}
         <span class="logo-text">${esc(name)}</span>
       </a>
 
@@ -159,41 +167,31 @@
   // ───────── главный экран
 
   function renderToday() {
-    const specials = MENU.specials;
+    const specials = MENU.items.filter(i => i.special);
     $('#today').hidden = !specials.length;
     if (!specials.length) return;
 
     $('#todayDate').textContent = new Date().toLocaleDateString('ru-RU', { weekday: 'long', day: 'numeric', month: 'long' });
 
-    $('#specials').innerHTML = specials.map(({ label, id }) => {
-      const item = BY_ID[id];
-      const discount = item.oldPrice ? Math.round((1 - item.price / item.oldPrice) * 100) : 0;
-      return `
-        <article class="special" data-open="${esc(id)}" tabindex="0">
-          <div class="special-pic">
-            ${pic(item)}
-            ${discount > 0 ? `<span class="badge hot">−${discount}%</span>` : ''}
+    $('#specials').innerHTML = specials.map(item => `
+      <article class="special" data-open="${esc(item.id)}" tabindex="0">
+        <div class="special-pic">${pic(item)}</div>
+        <div class="special-body">
+          <span class="special-label">${specialLabel(item)}</span>
+          <h3>${esc(item.name)}</h3>
+          ${item.desc ? `<p>${esc(item.desc)}</p>` : ''}
+          <div class="special-foot">
+            <div class="card-price"><b>${priceLabel(item)}</b></div>
+            ${slot(keyOf(item.id), 'card')}
           </div>
-          <div class="special-body">
-            <span class="special-label">${esc(label)}</span>
-            <h3>${esc(item.name)}</h3>
-            ${item.short ? `<p>${esc(item.short)}</p>` : ''}
-            <div class="special-foot">
-              <div class="card-price">
-                <b>${priceLabel(item)}</b>
-                ${item.oldPrice ? `<s>${fmt(item.oldPrice)}</s>` : ''}
-              </div>
-              ${slot(keyOf(id), 'card')}
-            </div>
-          </div>
-        </article>`;
-    }).join('');
+        </div>
+      </article>`).join('');
   }
 
-  // в ленте — только разделы, в которых у этой кофейни есть позиции
+  // в ленте — только разделы, в которых есть позиции
   function menuCategories() {
     const used = new Set(MENU.items.map(i => i.cat));
-    return CATEGORIES.filter(c => used.has(c.id) && !c.hidden);
+    return MENU.categories.filter(c => used.has(c.id));
   }
 
   function renderTabs() {
@@ -270,73 +268,69 @@
       .slice(0, 8);
   }
 
-  // ───────── окно позиции
+  // ───────── окно позиции. Блок создаётся только если для него есть данные (не null)
 
   function productView(entry) {
     const item = BY_ID[entry.id];
-    const size = item.sizes && item.sizes[entry.size] ? entry.size : 0;
-    const sz = item.sizes ? item.sizes[size] : null;
-    const k = sz ? sz.k : 1;
-    const r = v => (v * k >= 10 ? Math.round(v * k) : Math.round(v * k * 10) / 10).toString().replace('.', ',');
-    const amount = sz ? sz.amount : item.amount;
-    const n = item.nutrition;
+    const size = item.sizes[entry.size] ? entry.size : 0;
+    const v = item.sizes[size];
+    const n = v.nutrition;
     const drink = isDrink(item);
     const recs = recommendationsFor(item);
+    const r = x => String(x).replace('.', ',');
 
-    const nutriTile = (v, label) => v === null ? '' : `<div><b>${r(v)}</b><small>${label}</small></div>`;
+    const meta = [
+      v.amount && esc(v.amount),
+      item.prep !== null && `~${item.prep} мин`,
+      n && n.kcal !== null && `${r(n.kcal)} ккал`,
+    ].filter(Boolean);
+
+    const nutri = n ? [[n.kcal, 'ккал'], [n.p, 'белки, г'], [n.f, 'жиры, г'], [n.c, 'углеводы, г']]
+      .filter(([x]) => x !== null) : [];
+
+    const facts = [
+      v.amount && [drink ? 'Объём' : 'Вес', esc(v.amount)],
+      item.sizes.length > 1 && item.sizes.every(s => s.amount) && ['Варианты', item.sizes.map(s => esc(s.amount)).join(' / ')],
+      item.prep !== null && ['Время приготовления', `~${item.prep} мин`],
+    ].filter(Boolean);
 
     return `
       <div class="pm">
-        <div class="pm-hero">
-          ${pic(item, 'xl')}
-          ${item.badge ? `<span class="badge big">${esc(item.badge)}</span>` : ''}
-        </div>
+        <div class="pm-hero">${pic(item, 'xl')}</div>
 
         <div class="pm-body">
           <h2 class="pm-title">${esc(item.name)}</h2>
-          <div class="pm-meta">
-            ${amount ? `<span>${esc(amount)}</span>` : ''}
-            <span>~${item.prep} мин</span>
-            ${n && n.kcal !== null ? `<span>${r(n.kcal)} ккал</span>` : ''}
-          </div>
+          ${meta.length ? `<div class="pm-meta">${meta.map(m => `<span>${m}</span>`).join('')}</div>` : ''}
 
-          ${item.sizes && item.sizes.length > 1 ? `
-            <div class="sizes" role="radiogroup" aria-label="Размер">
+          ${item.sizes.length > 1 ? `
+            <div class="sizes" role="radiogroup" aria-label="Вариант">
               ${item.sizes.map((s, i) => `
                 <button type="button" class="size ${i === size ? 'active' : ''}" data-size="${i}" role="radio" aria-checked="${i === size}">
-                  <b>${esc(s.label)}</b>${s.amount && s.amount !== s.label ? `<small>${esc(s.amount)}</small>` : ''}
+                  <b>${esc(s.label)}</b><small>${fmt(s.price)}</small>
                 </button>`).join('')}
             </div>` : ''}
 
           <div class="pm-buy">
-            <div class="pm-price">
-              <b>${fmt(priceOf(item, size))}</b>
-              ${item.oldPrice ? `<s>${fmt(item.oldPrice)}</s>` : ''}
-            </div>
+            <div class="pm-price"><b>${fmt(v.price)}</b></div>
             ${slot(keyOf(item.id, size), 'big')}
           </div>
 
           ${item.desc ? `<p class="pm-desc">${esc(item.desc)}</p>` : ''}
 
-          ${n ? `
-            <h3 class="pm-h">Пищевая ценность ${amount ? `<small>на ${esc(amount)}</small>` : ''}</h3>
-            <div class="nutri">
-              ${nutriTile(n.kcal, 'ккал')}
-              ${nutriTile(n.p, 'белки, г')}
-              ${nutriTile(n.f, 'жиры, г')}
-              ${nutriTile(n.c, 'углеводы, г')}
+          ${nutri.length ? `
+            <h3 class="pm-h">Пищевая ценность ${v.amount ? `<small>на ${esc(v.amount)}</small>` : ''}</h3>
+            <div class="nutri" style="--cols:${nutri.length}">
+              ${nutri.map(([x, label]) => `<div><b>${r(x)}</b><small>${label}</small></div>`).join('')}
             </div>` : ''}
 
           ${item.ing.length ? `
             <h3 class="pm-h">Состав</h3>
             <div class="chips">${item.ing.map(x => `<span>${esc(x)}</span>`).join('')}</div>` : ''}
 
-          <dl class="facts">
-            ${amount ? `<div><dt>${drink ? 'Объём' : 'Вес'}</dt><dd>${esc(amount)}</dd></div>` : ''}
-            ${item.sizes && item.sizes.length > 1 && item.sizes.every(s => s.amount)
-              ? `<div><dt>Размеры</dt><dd>${item.sizes.map(s => esc(s.amount)).join(' / ')}</dd></div>` : ''}
-            <div><dt>Время приготовления</dt><dd>~${item.prep} мин</dd></div>
-          </dl>
+          ${facts.length ? `
+            <dl class="facts">
+              ${facts.map(([dt, dd]) => `<div><dt>${dt}</dt><dd>${dd}</dd></div>`).join('')}
+            </dl>` : ''}
 
           ${recs.length ? `
             <h3 class="pm-h rec-title">${drink || catOf(item).kind === 'set' ? 'К этому напитку возьмите' : 'К этому подойдёт'}</h3>
@@ -350,7 +344,7 @@
   function estimateMinutes() {
     const lines = orderLines();
     if (!lines.length) return 0;
-    const maxPrep = Math.max(...lines.map(l => l.item.prep));
+    const maxPrep = Math.max(...lines.map(l => l.item.prepEstimate));
     const qty = lines.reduce((s, l) => s + l.qty, 0);
     const raw = maxPrep + Math.min(15, (qty - 1) * 2);
     return Math.max(5, Math.ceil(raw / 5) * 5);
@@ -397,14 +391,13 @@
 
         <ul class="lines">
           ${lines.map(l => {
-            const s = l.item.sizes ? l.item.sizes[l.size] : null;
-            const detail = s ? [s.label, s.amount !== s.label && s.amount].filter(Boolean).join(' · ') : l.item.amount;
+            const amount = l.item.sizes[l.size].amount;
             return `
               <li class="line">
                 <div class="line-pic" data-open="${esc(l.item.id)}" data-open-size="${l.size}">${pic(l.item)}</div>
                 <div class="line-info" data-open="${esc(l.item.id)}" data-open-size="${l.size}">
                   <b>${esc(l.item.name)}</b>
-                  ${detail ? `<small>${esc(detail)}</small>` : ''}
+                  ${amount ? `<small>${esc(amount)}</small>` : ''}
                   <small>${fmt(priceOf(l.item, l.size))} × ${l.qty}</small>
                 </div>
                 <div class="line-right">
@@ -589,34 +582,33 @@
 
   async function renderPicker(cafes) {
     renderHeader(null, false);
+
     if (!cafes.length) {
       showScreen(`
         <div class="empty">
-          <div class="empty-emoji">☕</div>
           <p>Кофеен пока нет</p>
           <small>Добавьте кофейню в data/cafes.json</small>
         </div>`);
       return;
     }
 
-    // подгружаем меню, чтобы показать название, адрес и число позиций
-    const menus = await Promise.allSettled(cafes.map(c => API.getMenu(c, CATEGORIES)));
+    // подгружаем меню, чтобы показать число позиций
+    const menus = await Promise.allSettled(cafes.map(c => API.getMenu(c, STYLES)));
     showScreen(`
       <h2 class="screen-title">Выберите кофейню</h2>
       <div class="cafes">
         ${cafes.map((c, i) => {
           const res = menus[i];
           const m = res.status === 'fulfilled' ? res.value : null;
-          const name = m ? m.cafe.name : (c.name || c.id);
-          const where = m ? [m.cafe.city, m.cafe.address].filter(Boolean).join(', ') : '';
+          const where = [c.city, c.address].filter(Boolean).join(', ');
           const count = m ? m.items.length : 0;
           const status = !m ? 'Ошибка в данных меню'
             : count ? `${count} ${plural(count, 'позиция', 'позиции', 'позиций')}` : 'Меню пока пустое';
           return `
             <a class="cafe-card ${m ? '' : 'broken'}" href="?cafe=${encodeURIComponent(c.id)}">
-              <span class="cafe-logo">${esc(name.trim().charAt(0).toUpperCase() || '☕')}</span>
+              ${logo(c.logo, c.name, 'cafe-logo')}
               <span class="cafe-info">
-                <b>${esc(name)}</b>
+                <b>${esc(c.name)}</b>
                 ${where ? `<small>${esc(where)}</small>` : ''}
                 <small class="cafe-status">${esc(status)}</small>
               </span>
@@ -628,7 +620,7 @@
 
   function renderError(err) {
     console.error(err);
-    renderHeader(null, false);
+    if (BRAND) renderHeader(null, false);
     showScreen(`
       <div class="empty error">
         <div class="empty-emoji">⚠️</div>
@@ -641,6 +633,7 @@
   // ───────── запуск
 
   function startMenu(canSwitch) {
+    CATS = Object.fromEntries(MENU.categories.map(c => [c.id, c]));
     BY_ID = Object.fromEntries(MENU.items.map(i => [i.id, i]));
     money = makeMoney(MENU.currency);
     STORAGE_KEY = `order:${MENU.cafe.id}`;
@@ -658,15 +651,15 @@
     if (history.state && history.state.depth) history.replaceState(null, '');
 
     try {
-      const [categories, cafes] = await Promise.all([API.getCategories(), API.getCafes()]);
-      CATEGORIES = categories;
-      CATS = Object.fromEntries(categories.map(c => [c.id, c]));
+      const [styles, { brand, cafes }] = await Promise.all([API.getStyles(), API.getCafes()]);
+      STYLES = styles;
+      BRAND = brand;
 
       const wanted = new URLSearchParams(location.search).get('cafe');
       const cafe = cafes.find(c => c.id === wanted) || (cafes.length === 1 ? cafes[0] : null);
       if (!cafe) return renderPicker(cafes);
 
-      MENU = await API.getMenu(cafe, categories);
+      MENU = await API.getMenu(cafe, styles);
       startMenu(cafes.length > 1);
     } catch (err) {
       renderError(err);

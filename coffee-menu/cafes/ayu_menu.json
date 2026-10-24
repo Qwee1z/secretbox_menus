@@ -1,310 +1,804 @@
 {
-  "$schema": "../data/menu.schema.json",
-  "cafe": {
-    "name": "Ayu"
-  },
-  "currency": "KZT",
+  "categories": [
+    {
+      "id": "coffee",
+      "name": "Кофе",
+      "icon": "☕",
+      "order": 1
+    },
+    {
+      "id": "tea",
+      "name": "Чай",
+      "icon": "🍵",
+      "order": 2
+    },
+    {
+      "id": "cocoa",
+      "name": "Какао и шоколад",
+      "icon": "🍫",
+      "order": 3
+    },
+    {
+      "id": "cold_drinks",
+      "name": "Холодные напитки",
+      "icon": "🧊",
+      "order": 4
+    }
+  ],
   "items": [
     {
+      "id": "item_ays_latte_pechene_sol",
+      "category_id": "cold_drinks",
       "name": "Айс латте печенье соль",
-      "category": "cold",
-      "size_ml": null,
-      "price": 1290,
-      "emoji": "🍪"
+      "image_url": "pictures/items/ayu_menu/item_ays_latte_pechene_sol.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_ays_latte_pechene_sol_std",
+          "measure": null,
+          "price": 1290,
+          "nutrition": null
+        }
+      ]
     },
     {
+      "id": "item_ays_latte_banan_karamel",
+      "category_id": "cold_drinks",
       "name": "Айс латте банан-карамель",
-      "category": "cold",
-      "size_ml": null,
-      "price": 1290,
-      "emoji": "🍌"
+      "image_url": "pictures/items/ayu_menu/item_ays_latte_banan_karamel.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_ays_latte_banan_karamel_std",
+          "measure": null,
+          "price": 1290,
+          "nutrition": null
+        }
+      ]
     },
     {
+      "id": "item_ays_latte_fistashkovoe_morozhenoe",
+      "category_id": "cold_drinks",
       "name": "Айс латте фисташковое мороженое",
-      "category": "cold",
-      "size_ml": null,
-      "price": 1290,
-      "emoji": "🍨"
+      "image_url": "pictures/items/ayu_menu/item_ays_latte_fistashkovoe_morozhenoe.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_ays_latte_fistashkovoe_morozhenoe_std",
+          "measure": null,
+          "price": 1290,
+          "nutrition": null
+        }
+      ]
     },
     {
+      "id": "item_ays_amerikano_tsitrus",
+      "category_id": "cold_drinks",
       "name": "Айс американо Цитрус",
-      "category": "cold",
-      "size_ml": null,
-      "price": 1190,
-      "emoji": "🍋"
+      "image_url": "pictures/items/ayu_menu/item_ays_amerikano_tsitrus.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_ays_amerikano_tsitrus_std",
+          "measure": null,
+          "price": 1190,
+          "nutrition": null
+        }
+      ]
     },
     {
+      "id": "item_frapuchino_banan",
+      "category_id": "cold_drinks",
       "name": "Фрапучино Банан",
-      "category": "cold",
-      "size_ml": null,
-      "price": 1990,
-      "emoji": "🍌"
+      "image_url": "pictures/items/ayu_menu/item_frapuchino_banan.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_frapuchino_banan_std",
+          "measure": null,
+          "price": 1990,
+          "nutrition": null
+        }
+      ]
     },
     {
+      "id": "item_cherry_espresso_tonik",
+      "category_id": "cold_drinks",
       "name": "Cherry эспрессо тоник",
-      "category": "cold",
-      "size_ml": null,
-      "price": 1790,
-      "emoji": "🍒"
+      "image_url": "pictures/items/ayu_menu/item_cherry_espresso_tonik.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_cherry_espresso_tonik_std",
+          "measure": null,
+          "price": 1790,
+          "nutrition": null
+        }
+      ]
     },
     {
+      "id": "item_bumble_coffee",
+      "category_id": "cold_drinks",
       "name": "Bumble coffee",
-      "category": "cold",
-      "size_ml": null,
-      "price": 1590,
-      "emoji": "🍊"
+      "image_url": "pictures/items/ayu_menu/item_bumble_coffee.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_bumble_coffee_std",
+          "measure": null,
+          "price": 1590,
+          "nutrition": null
+        }
+      ]
     },
     {
+      "id": "item_ays_matcha_mango",
+      "category_id": "cold_drinks",
       "name": "Айс матча манго",
-      "category": "cold",
-      "size_ml": null,
-      "price": 1790,
-      "emoji": "🥭"
+      "image_url": "pictures/items/ayu_menu/item_ays_matcha_mango.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_ays_matcha_mango_std",
+          "measure": null,
+          "price": 1790,
+          "nutrition": null
+        }
+      ]
     },
     {
+      "id": "item_ays_matcha_klubnika",
+      "category_id": "cold_drinks",
       "name": "Айс матча клубника",
-      "category": "cold",
-      "size_ml": null,
-      "price": 1790,
-      "emoji": "🍓"
+      "image_url": "pictures/items/ayu_menu/item_ays_matcha_klubnika.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_ays_matcha_klubnika_std",
+          "measure": null,
+          "price": 1790,
+          "nutrition": null
+        }
+      ]
     },
     {
+      "id": "item_ays_matcha_grusha",
+      "category_id": "cold_drinks",
       "name": "Айс матча груша",
-      "category": "cold",
-      "size_ml": null,
-      "price": 1790,
-      "emoji": "🍐"
+      "image_url": "pictures/items/ayu_menu/item_ays_matcha_grusha.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_ays_matcha_grusha_std",
+          "measure": null,
+          "price": 1790,
+          "nutrition": null
+        }
+      ]
     },
     {
+      "id": "item_smuzi_malinovyy",
+      "category_id": "cold_drinks",
       "name": "Смузи малиновый",
-      "category": "cold",
-      "size_ml": null,
-      "price": 1550,
-      "emoji": "🫐"
+      "image_url": "pictures/items/ayu_menu/item_smuzi_malinovyy.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_smuzi_malinovyy_std",
+          "measure": null,
+          "price": 1550,
+          "nutrition": null
+        }
+      ]
     },
     {
+      "id": "item_smuzi_vitaminnyy",
+      "category_id": "cold_drinks",
       "name": "Смузи Витаминный",
-      "category": "cold",
-      "size_ml": null,
-      "price": 1550,
-      "emoji": "🥝"
+      "image_url": "pictures/items/ayu_menu/item_smuzi_vitaminnyy.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_smuzi_vitaminnyy_std",
+          "measure": null,
+          "price": 1550,
+          "nutrition": null
+        }
+      ]
     },
     {
+      "id": "item_bumble_matcha",
+      "category_id": "cold_drinks",
       "name": "Bumble matcha",
-      "category": "cold",
-      "size_ml": null,
-      "price": 1590,
-      "emoji": "🍵"
+      "image_url": "pictures/items/ayu_menu/item_bumble_matcha.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_bumble_matcha_std",
+          "measure": null,
+          "price": 1590,
+          "nutrition": null
+        }
+      ]
     },
     {
+      "id": "item_ist_ti_tsitrus",
+      "category_id": "cold_drinks",
       "name": "Ист-ти Цитрус",
-      "category": "cold",
-      "size_ml": null,
-      "price": 1190,
-      "emoji": "🍋"
+      "image_url": "pictures/items/ayu_menu/item_ist_ti_tsitrus.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_ist_ti_tsitrus_std",
+          "measure": null,
+          "price": 1190,
+          "nutrition": null
+        }
+      ]
     },
     {
+      "id": "item_ist_ti_yagodnyy",
+      "category_id": "cold_drinks",
       "name": "Ист-ти Ягодный",
-      "category": "cold",
-      "size_ml": null,
-      "price": 1190,
-      "emoji": "🫐"
+      "image_url": "pictures/items/ayu_menu/item_ist_ti_yagodnyy.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_ist_ti_yagodnyy_std",
+          "measure": null,
+          "price": 1190,
+          "nutrition": null
+        }
+      ]
     },
     {
+      "id": "item_espresso",
+      "category_id": "coffee",
       "name": "Эспрессо",
-      "category": "coffee",
-      "size_ml": null,
-      "price": 700,
-      "emoji": "☕"
+      "image_url": "pictures/items/ayu_menu/item_espresso.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_espresso_std",
+          "measure": null,
+          "price": 700,
+          "nutrition": null
+        }
+      ]
     },
     {
+      "id": "item_amerikano",
+      "category_id": "coffee",
       "name": "Американо",
-      "category": "coffee",
-      "size_ml": null,
-      "price": 890,
-      "emoji": "☕"
+      "image_url": "pictures/items/ayu_menu/item_amerikano.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_amerikano_std",
+          "measure": null,
+          "price": 890,
+          "nutrition": null
+        }
+      ]
     },
     {
+      "id": "item_flet_uayt",
+      "category_id": "coffee",
       "name": "Флэт-Уайт",
-      "category": "coffee",
-      "size_ml": null,
-      "price": 1190,
-      "emoji": "☕"
+      "image_url": "pictures/items/ayu_menu/item_flet_uayt.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_flet_uayt_std",
+          "measure": null,
+          "price": 1190,
+          "nutrition": null
+        }
+      ]
     },
     {
+      "id": "item_kapuchino",
+      "category_id": "coffee",
       "name": "Капучино",
-      "category": "coffee",
-      "size_ml": null,
-      "price": 1090,
-      "emoji": "☕"
+      "image_url": "pictures/items/ayu_menu/item_kapuchino.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_kapuchino_std",
+          "measure": null,
+          "price": 1090,
+          "nutrition": null
+        }
+      ]
     },
     {
+      "id": "item_latte",
+      "category_id": "coffee",
       "name": "Латте",
-      "category": "coffee",
-      "size_ml": null,
-      "price": 1190,
-      "emoji": "🥛"
+      "image_url": "pictures/items/ayu_menu/item_latte.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_latte_std",
+          "measure": null,
+          "price": 1190,
+          "nutrition": null
+        }
+      ]
     },
     {
+      "id": "item_raf",
+      "category_id": "coffee",
       "name": "Раф",
-      "category": "coffee",
-      "size_ml": null,
-      "price": 1590,
-      "emoji": "🍦"
+      "image_url": "pictures/items/ayu_menu/item_raf.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_raf_std",
+          "measure": null,
+          "price": 1590,
+          "nutrition": null
+        }
+      ]
     },
     {
+      "id": "item_dop_shot",
+      "category_id": "coffee",
       "name": "Доп шот",
-      "category": "coffee",
-      "size_ml": null,
-      "price": 350,
-      "emoji": "☕"
+      "image_url": "pictures/items/ayu_menu/item_dop_shot.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_dop_shot_std",
+          "measure": null,
+          "price": 350,
+          "nutrition": null
+        }
+      ]
     },
     {
+      "id": "item_kakao",
+      "category_id": "cocoa",
       "name": "Какао",
-      "category": "cocoa",
-      "size_ml": null,
-      "price": 950,
-      "emoji": "🍫"
+      "image_url": "pictures/items/ayu_menu/item_kakao.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_kakao_std",
+          "measure": null,
+          "price": 950,
+          "nutrition": null
+        }
+      ]
     },
     {
+      "id": "item_shokolad",
+      "category_id": "cocoa",
       "name": "Шоколад",
-      "category": "cocoa",
-      "size_ml": null,
-      "price": 950,
-      "emoji": "🍫"
+      "image_url": "pictures/items/ayu_menu/item_shokolad.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_shokolad_std",
+          "measure": null,
+          "price": 950,
+          "nutrition": null
+        }
+      ]
     },
     {
+      "id": "item_chernyy_chay",
+      "category_id": "tea",
       "name": "Черный чай",
-      "category": "tea",
-      "size_ml": null,
-      "price": 350,
-      "emoji": "🫖"
+      "image_url": "pictures/items/ayu_menu/item_chernyy_chay.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_chernyy_chay_std",
+          "measure": null,
+          "price": 350,
+          "nutrition": null
+        }
+      ]
     },
     {
+      "id": "item_zelenyy_chay",
+      "category_id": "tea",
       "name": "Зеленый чай",
-      "category": "tea",
-      "size_ml": null,
-      "price": 350,
-      "emoji": "🍵"
+      "image_url": "pictures/items/ayu_menu/item_zelenyy_chay.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_zelenyy_chay_std",
+          "measure": null,
+          "price": 350,
+          "nutrition": null
+        }
+      ]
     },
     {
+      "id": "item_glintveyn",
+      "category_id": "tea",
       "name": "Глинтвейн",
-      "category": "tea",
-      "size_ml": null,
-      "price": 950,
-      "emoji": "🍷"
+      "image_url": "pictures/items/ayu_menu/item_glintveyn.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_glintveyn_std",
+          "measure": null,
+          "price": 950,
+          "nutrition": null
+        }
+      ]
     },
     {
+      "id": "item_klubnika_apelsin",
+      "category_id": "tea",
       "name": "Клубника апельсин",
-      "category": "tea",
-      "size_ml": null,
-      "price": 950,
-      "emoji": "🍓"
+      "image_url": "pictures/items/ayu_menu/item_klubnika_apelsin.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_klubnika_apelsin_std",
+          "measure": null,
+          "price": 950,
+          "nutrition": null
+        }
+      ]
     },
     {
+      "id": "item_tashkentskiy_chay",
+      "category_id": "tea",
       "name": "Ташкентский чай",
-      "category": "tea",
-      "size_ml": null,
-      "price": 950,
-      "emoji": "🍋"
+      "image_url": "pictures/items/ayu_menu/item_tashkentskiy_chay.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_tashkentskiy_chay_std",
+          "measure": null,
+          "price": 950,
+          "nutrition": null
+        }
+      ]
     },
     {
+      "id": "item_marokkanskiy_chay",
+      "category_id": "tea",
       "name": "Марокканский чай",
-      "category": "tea",
-      "size_ml": null,
-      "price": 950,
-      "emoji": "🌿"
+      "image_url": "pictures/items/ayu_menu/item_marokkanskiy_chay.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_marokkanskiy_chay_std",
+          "measure": null,
+          "price": 950,
+          "nutrition": null
+        }
+      ]
     },
     {
+      "id": "item_oblepiha_apelsin",
+      "category_id": "tea",
       "name": "Облепиха апельсин",
-      "category": "tea",
-      "size_ml": null,
-      "price": 950,
-      "emoji": "🍊"
+      "image_url": "pictures/items/ayu_menu/item_oblepiha_apelsin.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_oblepiha_apelsin_std",
+          "measure": null,
+          "price": 950,
+          "nutrition": null
+        }
+      ]
     },
     {
+      "id": "item_yagodnyy_chay",
+      "category_id": "tea",
       "name": "Ягодный чай",
-      "category": "tea",
-      "size_ml": null,
-      "price": 950,
-      "emoji": "🫐"
+      "image_url": "pictures/items/ayu_menu/item_yagodnyy_chay.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_yagodnyy_chay_std",
+          "measure": null,
+          "price": 950,
+          "nutrition": null
+        }
+      ]
     },
     {
+      "id": "item_imbirnyy_chay",
+      "category_id": "tea",
       "name": "Имбирный чай",
-      "category": "tea",
-      "size_ml": null,
-      "price": 950,
-      "emoji": "🫖"
+      "image_url": "pictures/items/ayu_menu/item_imbirnyy_chay.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_imbirnyy_chay_std",
+          "measure": null,
+          "price": 950,
+          "nutrition": null
+        }
+      ]
     },
     {
+      "id": "item_glyasse",
+      "category_id": "cold_drinks",
       "name": "Гляссе",
-      "category": "cold",
-      "size_ml": null,
-      "price": 1590,
-      "emoji": "🍨"
+      "image_url": "pictures/items/ayu_menu/item_glyasse.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_glyasse_std",
+          "measure": null,
+          "price": 1590,
+          "nutrition": null
+        }
+      ]
     },
     {
+      "id": "item_frappuchino",
+      "category_id": "cold_drinks",
       "name": "Фраппучино",
-      "category": "cold",
-      "size_ml": null,
-      "price": 1790,
-      "emoji": "🥤"
+      "image_url": "pictures/items/ayu_menu/item_frappuchino.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_frappuchino_std",
+          "measure": null,
+          "price": 1790,
+          "nutrition": null
+        }
+      ]
     },
     {
+      "id": "item_ays_latte",
+      "category_id": "cold_drinks",
       "name": "Айс Латте",
-      "category": "cold",
-      "size_ml": null,
-      "price": 1190,
-      "emoji": "🧋"
+      "image_url": "pictures/items/ayu_menu/item_ays_latte.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_ays_latte_std",
+          "measure": null,
+          "price": 1190,
+          "nutrition": null
+        }
+      ]
     },
     {
+      "id": "item_ays_amerikano",
+      "category_id": "cold_drinks",
       "name": "Айс Американо",
-      "category": "cold",
-      "size_ml": null,
-      "price": 990,
-      "emoji": "🧊"
+      "image_url": "pictures/items/ayu_menu/item_ays_amerikano.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_ays_amerikano_std",
+          "measure": null,
+          "price": 990,
+          "nutrition": null
+        }
+      ]
     },
     {
+      "id": "item_bambl_kofe",
+      "category_id": "cold_drinks",
       "name": "Бамбл кофе",
-      "category": "cold",
-      "size_ml": null,
-      "price": 1590,
-      "emoji": "🍊"
+      "image_url": "pictures/items/ayu_menu/item_bambl_kofe.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_bambl_kofe_std",
+          "measure": null,
+          "price": 1590,
+          "nutrition": null
+        }
+      ]
     },
     {
+      "id": "item_espresso_tonik",
+      "category_id": "cold_drinks",
       "name": "Эспрессо тоник",
-      "category": "cold",
-      "size_ml": null,
-      "price": 1690,
-      "emoji": "🧊"
+      "image_url": "pictures/items/ayu_menu/item_espresso_tonik.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_espresso_tonik_std",
+          "measure": null,
+          "price": 1690,
+          "nutrition": null
+        }
+      ]
     },
     {
+      "id": "item_matcha_tonik",
+      "category_id": "cold_drinks",
       "name": "Матча тоник",
-      "category": "cold",
-      "size_ml": null,
-      "price": 1490,
-      "emoji": "🍵"
+      "image_url": "pictures/items/ayu_menu/item_matcha_tonik.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_matcha_tonik_std",
+          "measure": null,
+          "price": 1490,
+          "nutrition": null
+        }
+      ]
     },
     {
+      "id": "item_matcha_latte",
+      "category_id": "tea",
       "name": "Матча латте",
-      "category": "tea",
-      "size_ml": null,
-      "price": 1300,
-      "emoji": "🍵"
+      "image_url": "pictures/items/ayu_menu/item_matcha_latte.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_matcha_latte_std",
+          "measure": null,
+          "price": 1300,
+          "nutrition": null
+        }
+      ]
     },
     {
+      "id": "item_milksheyk",
+      "category_id": "cold_drinks",
       "name": "Милкшейк",
-      "category": "cold",
-      "size_ml": null,
-      "price": 1250,
-      "emoji": "🥤"
+      "image_url": "pictures/items/ayu_menu/item_milksheyk.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_milksheyk_std",
+          "measure": null,
+          "price": 1250,
+          "nutrition": null
+        }
+      ]
     },
     {
+      "id": "item_limonad",
+      "category_id": "cold_drinks",
       "name": "Лимонад",
-      "category": "cold",
-      "size_ml": null,
-      "price": 1090,
-      "emoji": "🍋"
+      "image_url": "pictures/items/ayu_menu/item_limonad.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": null,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_limonad_std",
+          "measure": null,
+          "price": 1090,
+          "nutrition": null
+        }
+      ]
     }
   ]
 }

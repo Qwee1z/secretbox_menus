@@ -1,266 +1,335 @@
 {
-  "$schema": "../data/menu.schema.json",
-  "cafe": {
-    "name": "Зерно",
-    "address": "ул. Панфилова, 98",
-    "city": "Алматы",
-    "hours": "до 22:00"
-  },
-  "currency": "KZT",
-  "specials": [
+  "categories": [
     {
-      "label": "Блюдо дня",
-      "item": "lagman"
+      "id": "coffee",
+      "name": "Кофе",
+      "icon": "☕",
+      "order": 1
     },
     {
-      "label": "Напиток дня",
-      "item": "seabuckthorn"
+      "id": "tea",
+      "name": "Чай",
+      "icon": "🍵",
+      "order": 2
     },
     {
-      "label": "Комбо дня",
-      "item": "combo_morning"
+      "id": "cold_drinks",
+      "name": "Холодные напитки",
+      "icon": "🧊",
+      "order": 3
+    },
+    {
+      "id": "breakfast",
+      "name": "Завтраки",
+      "icon": "🍳",
+      "order": 4
+    },
+    {
+      "id": "hot_meals",
+      "name": "Горячие блюда",
+      "icon": "🍲",
+      "order": 5
+    },
+    {
+      "id": "snacks",
+      "name": "Закуски",
+      "icon": "🥪",
+      "order": 6
+    },
+    {
+      "id": "desserts",
+      "name": "Десерты",
+      "icon": "🍰",
+      "order": 7
+    },
+    {
+      "id": "pastry",
+      "name": "Выпечка",
+      "icon": "🥐",
+      "order": 8
+    },
+    {
+      "id": "combo",
+      "name": "Комбо",
+      "icon": "✨",
+      "order": 9
     }
   ],
   "items": [
     {
-      "id": "espresso",
+      "id": "item_espresso",
+      "category_id": "coffee",
       "name": "Эспрессо",
-      "category": "coffee",
-      "sizes": [
-        {
-          "label": "Сингл",
-          "size_ml": 30,
-          "price": 700
-        },
-        {
-          "label": "Доппио",
-          "size_ml": 60,
-          "price": 900
-        }
-      ],
-      "short": "Плотный шот из нашей арабики",
+      "image_url": "pictures/items/zerno/item_espresso.jpg",
       "description": "Классический эспрессо на смеси бразильской и эфиопской арабики средней обжарки. Ноты молочного шоколада, лесного ореха и лёгкая ягодная кислинка.",
-      "emoji": "☕",
-      "nutrition": {
-        "kcal": 2,
-        "protein": 0.1,
-        "fat": 0,
-        "carbs": 0.3
-      },
       "ingredients": [
         "Кофе 100% арабика",
         "Фильтрованная вода"
       ],
-      "prep_min": 3
+      "prep_time_min": 3,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_espresso_1",
+          "measure": "30 мл",
+          "price": 700,
+          "nutrition": {
+            "calories": 2.0,
+            "proteins": 0.1,
+            "fats": 0.0,
+            "carbs": 0.3
+          }
+        },
+        {
+          "variant_id": "var_espresso_2",
+          "measure": "60 мл",
+          "price": 900,
+          "nutrition": {
+            "calories": 4.0,
+            "proteins": 0.2,
+            "fats": 0.0,
+            "carbs": 0.6
+          }
+        }
+      ]
     },
     {
-      "id": "americano",
+      "id": "item_americano",
+      "category_id": "coffee",
       "name": "Американо",
-      "category": "coffee",
-      "sizes": [
-        {
-          "label": "S",
-          "size_ml": 250,
-          "price": 900
-        },
-        {
-          "label": "M",
-          "size_ml": 350,
-          "price": 1100
-        },
-        {
-          "label": "L",
-          "size_ml": 450,
-          "price": 1300
-        }
-      ],
-      "short": "Эспрессо, раскрытый горячей водой",
+      "image_url": "pictures/items/zerno/item_americano.jpg",
       "description": "Двойной эспрессо, разбавленный горячей водой. Мягкий и чистый вкус — хорошо пьётся как сам по себе, так и с молоком.",
-      "emoji": "☕",
-      "nutrition": {
-        "kcal": 5,
-        "protein": 0.3,
-        "fat": 0,
-        "carbs": 0.8
-      },
       "ingredients": [
         "Двойной эспрессо",
         "Горячая вода"
       ],
-      "prep_min": 3
+      "prep_time_min": 3,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_americano_1",
+          "measure": "250 мл",
+          "price": 900,
+          "nutrition": {
+            "calories": 5.0,
+            "proteins": 0.3,
+            "fats": 0.0,
+            "carbs": 0.8
+          }
+        },
+        {
+          "variant_id": "var_americano_2",
+          "measure": "350 мл",
+          "price": 1100,
+          "nutrition": {
+            "calories": 7.0,
+            "proteins": 0.4,
+            "fats": 0.0,
+            "carbs": 1.1
+          }
+        },
+        {
+          "variant_id": "var_americano_3",
+          "measure": "450 мл",
+          "price": 1300,
+          "nutrition": {
+            "calories": 9.0,
+            "proteins": 0.5,
+            "fats": 0.0,
+            "carbs": 1.4
+          }
+        }
+      ]
     },
     {
-      "id": "cappuccino",
+      "id": "item_cappuccino",
+      "category_id": "coffee",
       "name": "Капучино",
-      "category": "coffee",
-      "sizes": [
-        {
-          "label": "S",
-          "size_ml": 250,
-          "price": 1100
-        },
-        {
-          "label": "M",
-          "size_ml": 350,
-          "price": 1300
-        },
-        {
-          "label": "L",
-          "size_ml": 450,
-          "price": 1500
-        }
-      ],
-      "short": "Эспрессо и нежная молочная пена",
+      "image_url": "pictures/items/zerno/item_cappuccino.jpg",
       "description": "Баланс эспрессо и бархатистого молока с плотной микропеной. Самый популярный напиток нашей кофейни — бариста украсит его латте-артом.",
-      "emoji": "☕",
-      "badge": "Хит",
-      "nutrition": {
-        "kcal": 95,
-        "protein": 5,
-        "fat": 5,
-        "carbs": 7
-      },
       "ingredients": [
         "Эспрессо",
         "Молоко 3,2%",
         "Молочная микропена"
       ],
-      "prep_min": 4
+      "prep_time_min": 4,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_cappuccino_1",
+          "measure": "250 мл",
+          "price": 1100,
+          "nutrition": {
+            "calories": 95,
+            "proteins": 5.0,
+            "fats": 5.0,
+            "carbs": 7.0
+          }
+        },
+        {
+          "variant_id": "var_cappuccino_2",
+          "measure": "350 мл",
+          "price": 1300,
+          "nutrition": {
+            "calories": 133,
+            "proteins": 7.0,
+            "fats": 7.0,
+            "carbs": 9.8
+          }
+        },
+        {
+          "variant_id": "var_cappuccino_3",
+          "measure": "450 мл",
+          "price": 1500,
+          "nutrition": {
+            "calories": 171,
+            "proteins": 9.0,
+            "fats": 9.0,
+            "carbs": 13
+          }
+        }
+      ]
     },
     {
-      "id": "latte",
+      "id": "item_latte",
+      "category_id": "coffee",
       "name": "Латте",
-      "category": "coffee",
-      "sizes": [
-        {
-          "label": "S",
-          "size_ml": 250,
-          "price": 1200
-        },
-        {
-          "label": "M",
-          "size_ml": 350,
-          "price": 1400
-        },
-        {
-          "label": "L",
-          "size_ml": 450,
-          "price": 1600
-        }
-      ],
-      "short": "Больше молока, мягкий вкус",
+      "image_url": "pictures/items/zerno/item_latte.jpg",
       "description": "Эспрессо с большим количеством взбитого молока и тонким слоем пены. Можно добавить сироп: ваниль, карамель, лесной орех.",
-      "emoji": "🥛",
-      "nutrition": {
-        "kcal": 120,
-        "protein": 6,
-        "fat": 6,
-        "carbs": 10
-      },
       "ingredients": [
         "Эспрессо",
         "Молоко 3,2%"
       ],
-      "prep_min": 4
+      "prep_time_min": 4,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_latte_1",
+          "measure": "250 мл",
+          "price": 1200,
+          "nutrition": {
+            "calories": 120,
+            "proteins": 6.0,
+            "fats": 6.0,
+            "carbs": 10
+          }
+        },
+        {
+          "variant_id": "var_latte_2",
+          "measure": "350 мл",
+          "price": 1400,
+          "nutrition": {
+            "calories": 168,
+            "proteins": 8.4,
+            "fats": 8.4,
+            "carbs": 14
+          }
+        },
+        {
+          "variant_id": "var_latte_3",
+          "measure": "450 мл",
+          "price": 1600,
+          "nutrition": {
+            "calories": 216,
+            "proteins": 11,
+            "fats": 11,
+            "carbs": 18
+          }
+        }
+      ]
     },
     {
-      "id": "raf",
+      "id": "item_raf",
+      "category_id": "coffee",
       "name": "Раф ванильный",
-      "category": "coffee",
-      "sizes": [
-        {
-          "label": "S",
-          "size_ml": 250,
-          "price": 1400
-        },
-        {
-          "label": "M",
-          "size_ml": 350,
-          "price": 1600
-        },
-        {
-          "label": "L",
-          "size_ml": 450,
-          "price": 1800
-        }
-      ],
-      "short": "Сливочный кофе с ванилью",
+      "image_url": "pictures/items/zerno/item_raf.jpg",
       "description": "Эспрессо, взбитый вместе со сливками и ванильным сахаром. Нежная, почти десертная текстура и тёплый ванильный аромат.",
-      "emoji": "🍦",
-      "nutrition": {
-        "kcal": 230,
-        "protein": 4,
-        "fat": 16,
-        "carbs": 18
-      },
       "ingredients": [
         "Эспрессо",
         "Сливки 10%",
         "Ванильный сахар"
       ],
-      "prep_min": 5
-    },
-    {
-      "id": "flatwhite",
-      "name": "Флэт уайт",
-      "category": "coffee",
-      "sizes": [
+      "prep_time_min": 5,
+      "is_special": false,
+      "variants": [
         {
-          "label": "S",
-          "size_ml": 200,
-          "price": 1300
+          "variant_id": "var_raf_1",
+          "measure": "250 мл",
+          "price": 1400,
+          "nutrition": {
+            "calories": 230,
+            "proteins": 4.0,
+            "fats": 16,
+            "carbs": 18
+          }
         },
         {
-          "label": "M",
-          "size_ml": 300,
-          "price": 1500
+          "variant_id": "var_raf_2",
+          "measure": "350 мл",
+          "price": 1600,
+          "nutrition": {
+            "calories": 322,
+            "proteins": 5.6,
+            "fats": 22,
+            "carbs": 25
+          }
+        },
+        {
+          "variant_id": "var_raf_3",
+          "measure": "450 мл",
+          "price": 1800,
+          "nutrition": {
+            "calories": 414,
+            "proteins": 7.2,
+            "fats": 29,
+            "carbs": 32
+          }
         }
-      ],
-      "short": "Двойной эспрессо и шёлковое молоко",
+      ]
+    },
+    {
+      "id": "item_flatwhite",
+      "category_id": "coffee",
+      "name": "Флэт уайт",
+      "image_url": "pictures/items/zerno/item_flatwhite.jpg",
       "description": "Больше кофе, меньше молока. Двойной ристретто и тонкий слой глянцевого молока — для тех, кто любит выраженный кофейный вкус.",
-      "emoji": "☕",
-      "nutrition": {
-        "kcal": 90,
-        "protein": 5,
-        "fat": 5,
-        "carbs": 6
-      },
       "ingredients": [
         "Двойной ристретто",
         "Молоко 3,2%"
       ],
-      "prep_min": 4
+      "prep_time_min": 4,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_flatwhite_1",
+          "measure": "200 мл",
+          "price": 1300,
+          "nutrition": {
+            "calories": 90,
+            "proteins": 5.0,
+            "fats": 5.0,
+            "carbs": 6.0
+          }
+        },
+        {
+          "variant_id": "var_flatwhite_2",
+          "measure": "300 мл",
+          "price": 1500,
+          "nutrition": {
+            "calories": 135,
+            "proteins": 7.5,
+            "fats": 7.5,
+            "carbs": 9.0
+          }
+        }
+      ]
     },
     {
-      "id": "mocha",
+      "id": "item_mocha",
+      "category_id": "coffee",
       "name": "Моккачино",
-      "category": "coffee",
-      "sizes": [
-        {
-          "label": "S",
-          "size_ml": 250,
-          "price": 1400
-        },
-        {
-          "label": "M",
-          "size_ml": 350,
-          "price": 1600
-        },
-        {
-          "label": "L",
-          "size_ml": 450,
-          "price": 1800
-        }
-      ],
-      "short": "Кофе, шоколад и взбитые сливки",
+      "image_url": "pictures/items/zerno/item_mocha.jpg",
       "description": "Эспрессо с бельгийским шоколадом и горячим молоком, сверху — шапка взбитых сливок и какао. Согревает лучше любого пледа.",
-      "emoji": "🍫",
-      "nutrition": {
-        "kcal": 210,
-        "protein": 6,
-        "fat": 11,
-        "carbs": 22
-      },
       "ingredients": [
         "Эспрессо",
         "Молоко 3,2%",
@@ -268,96 +337,124 @@
         "Взбитые сливки",
         "Какао"
       ],
-      "prep_min": 5
-    },
-    {
-      "id": "thyme",
-      "name": "Чёрный чай с чабрецом",
-      "category": "tea",
-      "sizes": [
+      "prep_time_min": 5,
+      "is_special": false,
+      "variants": [
         {
-          "label": "Малый",
-          "size_ml": 500,
-          "price": 1200
+          "variant_id": "var_mocha_1",
+          "measure": "250 мл",
+          "price": 1400,
+          "nutrition": {
+            "calories": 210,
+            "proteins": 6.0,
+            "fats": 11,
+            "carbs": 22
+          }
         },
         {
-          "label": "Большой",
-          "size_ml": 1000,
-          "price": 1900
+          "variant_id": "var_mocha_2",
+          "measure": "350 мл",
+          "price": 1600,
+          "nutrition": {
+            "calories": 294,
+            "proteins": 8.4,
+            "fats": 15,
+            "carbs": 31
+          }
+        },
+        {
+          "variant_id": "var_mocha_3",
+          "measure": "450 мл",
+          "price": 1800,
+          "nutrition": {
+            "calories": 378,
+            "proteins": 11,
+            "fats": 20,
+            "carbs": 40
+          }
         }
-      ],
-      "short": "Цейлонский чай и горные травы",
+      ]
+    },
+    {
+      "id": "item_thyme",
+      "category_id": "tea",
+      "name": "Чёрный чай с чабрецом",
+      "image_url": "pictures/items/zerno/item_thyme.jpg",
       "description": "Крупнолистовой цейлонский чай с чабрецом. Подаём в чайнике с лимоном и сахаром по желанию.",
-      "emoji": "🫖",
-      "nutrition": {
-        "kcal": 2,
-        "protein": 0,
-        "fat": 0,
-        "carbs": 0.4
-      },
       "ingredients": [
         "Чёрный чай (Цейлон)",
         "Чабрец",
         "Лимон"
       ],
-      "prep_min": 4
-    },
-    {
-      "id": "sencha",
-      "name": "Зелёная сенча",
-      "category": "tea",
-      "sizes": [
+      "prep_time_min": 4,
+      "is_special": false,
+      "variants": [
         {
-          "label": "Малый",
-          "size_ml": 500,
-          "price": 1300
+          "variant_id": "var_thyme_1",
+          "measure": "500 мл",
+          "price": 1200,
+          "nutrition": {
+            "calories": 2.0,
+            "proteins": 0.0,
+            "fats": 0.0,
+            "carbs": 0.4
+          }
         },
         {
-          "label": "Большой",
-          "size_ml": 1000,
-          "price": 2000
+          "variant_id": "var_thyme_2",
+          "measure": "1 л",
+          "price": 1900,
+          "nutrition": {
+            "calories": 4.0,
+            "proteins": 0.0,
+            "fats": 0.0,
+            "carbs": 0.8
+          }
         }
-      ],
-      "short": "Японский зелёный чай",
+      ]
+    },
+    {
+      "id": "item_sencha",
+      "category_id": "tea",
+      "name": "Зелёная сенча",
+      "image_url": "pictures/items/zerno/item_sencha.jpg",
       "description": "Свежий травянистый вкус с ноткой морского бриза. Завариваем при 80 °C, чтобы чай не горчил.",
-      "emoji": "🍵",
-      "nutrition": {
-        "kcal": 2,
-        "protein": 0,
-        "fat": 0,
-        "carbs": 0.3
-      },
       "ingredients": [
         "Зелёный чай сенча"
       ],
-      "prep_min": 4
-    },
-    {
-      "id": "seabuckthorn",
-      "name": "Облепиховый чай",
-      "category": "tea",
-      "sizes": [
+      "prep_time_min": 4,
+      "is_special": false,
+      "variants": [
         {
-          "label": "Малый",
-          "size_ml": 500,
-          "price": 1600
+          "variant_id": "var_sencha_1",
+          "measure": "500 мл",
+          "price": 1300,
+          "nutrition": {
+            "calories": 2.0,
+            "proteins": 0.0,
+            "fats": 0.0,
+            "carbs": 0.3
+          }
         },
         {
-          "label": "Большой",
-          "size_ml": 1000,
-          "price": 2600
+          "variant_id": "var_sencha_2",
+          "measure": "1 л",
+          "price": 2000,
+          "nutrition": {
+            "calories": 4.0,
+            "proteins": 0.0,
+            "fats": 0.0,
+            "carbs": 0.6
+          }
         }
-      ],
-      "short": "Облепиха, апельсин, мёд и имбирь",
+      ]
+    },
+    {
+      "id": "item_seabuckthorn",
+      "category_id": "tea",
+      "name": "Облепиховый чай",
+      "image_url": "pictures/items/zerno/item_seabuckthorn.jpg",
       "description": "Яркий согревающий чай из протёртой облепихи с апельсином, мёдом, имбирём и палочкой корицы. Витаминный заряд на весь день.",
-      "emoji": "🍊",
-      "badge": "Хит",
-      "nutrition": {
-        "kcal": 90,
-        "protein": 0.6,
-        "fat": 1.2,
-        "carbs": 22
-      },
       "ingredients": [
         "Облепиха",
         "Апельсин",
@@ -366,103 +463,126 @@
         "Корица",
         "Чёрный чай"
       ],
-      "prep_min": 6
+      "prep_time_min": 6,
+      "is_special": true,
+      "variants": [
+        {
+          "variant_id": "var_seabuckthorn_1",
+          "measure": "500 мл",
+          "price": 1600,
+          "nutrition": {
+            "calories": 90,
+            "proteins": 0.6,
+            "fats": 1.2,
+            "carbs": 22
+          }
+        },
+        {
+          "variant_id": "var_seabuckthorn_2",
+          "measure": "1 л",
+          "price": 2600,
+          "nutrition": {
+            "calories": 180,
+            "proteins": 1.2,
+            "fats": 2.4,
+            "carbs": 44
+          }
+        }
+      ]
     },
     {
-      "id": "matcha",
+      "id": "item_matcha",
+      "category_id": "tea",
       "name": "Матча латте",
-      "category": "tea",
-      "sizes": [
-        {
-          "label": "S",
-          "size_ml": 250,
-          "price": 1500
-        },
-        {
-          "label": "M",
-          "size_ml": 350,
-          "price": 1700
-        },
-        {
-          "label": "L",
-          "size_ml": 450,
-          "price": 1900
-        }
-      ],
-      "short": "Японский чай матча с молоком",
+      "image_url": "pictures/items/zerno/item_matcha.jpg",
       "description": "Церемониальная матча, взбитая венчиком и смешанная с молоком. Можно заменить молоко на овсяное или кокосовое.",
-      "emoji": "🍵",
-      "nutrition": {
-        "kcal": 140,
-        "protein": 7,
-        "fat": 6,
-        "carbs": 14
-      },
       "ingredients": [
         "Матча",
         "Молоко 3,2%",
         "Тростниковый сахар"
       ],
-      "prep_min": 5
-    },
-    {
-      "id": "icelatte",
-      "name": "Айс латте",
-      "category": "cold",
-      "sizes": [
+      "prep_time_min": 5,
+      "is_special": false,
+      "variants": [
         {
-          "label": "M",
-          "size_ml": 350,
-          "price": 1400
+          "variant_id": "var_matcha_1",
+          "measure": "250 мл",
+          "price": 1500,
+          "nutrition": {
+            "calories": 140,
+            "proteins": 7.0,
+            "fats": 6.0,
+            "carbs": 14
+          }
         },
         {
-          "label": "L",
-          "size_ml": 450,
-          "price": 1600
+          "variant_id": "var_matcha_2",
+          "measure": "350 мл",
+          "price": 1700,
+          "nutrition": {
+            "calories": 196,
+            "proteins": 9.8,
+            "fats": 8.4,
+            "carbs": 20
+          }
+        },
+        {
+          "variant_id": "var_matcha_3",
+          "measure": "450 мл",
+          "price": 1900,
+          "nutrition": {
+            "calories": 252,
+            "proteins": 13,
+            "fats": 11,
+            "carbs": 25
+          }
         }
-      ],
-      "short": "Эспрессо, холодное молоко и лёд",
+      ]
+    },
+    {
+      "id": "item_icelatte",
+      "category_id": "cold_drinks",
+      "name": "Айс латте",
+      "image_url": "pictures/items/zerno/item_icelatte.jpg",
       "description": "Освежающий латте со льдом. Хорош с карамельным или кокосовым сиропом.",
-      "emoji": "🧋",
-      "nutrition": {
-        "kcal": 110,
-        "protein": 5,
-        "fat": 5,
-        "carbs": 9
-      },
       "ingredients": [
         "Эспрессо",
         "Молоко 3,2%",
         "Лёд"
       ],
-      "prep_min": 4
-    },
-    {
-      "id": "lemonade",
-      "name": "Лимонад маракуйя-манго",
-      "category": "cold",
-      "sizes": [
+      "prep_time_min": 4,
+      "is_special": false,
+      "variants": [
         {
-          "label": "Стакан",
-          "size_ml": 400,
-          "price": 1300
+          "variant_id": "var_icelatte_1",
+          "measure": "350 мл",
+          "price": 1400,
+          "nutrition": {
+            "calories": 110,
+            "proteins": 5.0,
+            "fats": 5.0,
+            "carbs": 9.0
+          }
         },
         {
-          "label": "Кувшин",
-          "size_ml": 1000,
-          "price": 2800
+          "variant_id": "var_icelatte_2",
+          "measure": "450 мл",
+          "price": 1600,
+          "nutrition": {
+            "calories": 141,
+            "proteins": 6.4,
+            "fats": 6.4,
+            "carbs": 12
+          }
         }
-      ],
-      "short": "Домашний лимонад с тропическим пюре",
+      ]
+    },
+    {
+      "id": "item_lemonade",
+      "category_id": "cold_drinks",
+      "name": "Лимонад маракуйя-манго",
+      "image_url": "pictures/items/zerno/item_lemonade.jpg",
       "description": "Пюре маракуйи и манго, лайм, мята и газированная вода. Не слишком сладкий — именно такой, каким должен быть лимонад.",
-      "emoji": "🍋",
-      "badge": "Новинка",
-      "nutrition": {
-        "kcal": 120,
-        "protein": 0.5,
-        "fat": 0.2,
-        "carbs": 29
-      },
       "ingredients": [
         "Пюре маракуйи",
         "Пюре манго",
@@ -471,23 +591,39 @@
         "Газированная вода",
         "Лёд"
       ],
-      "prep_min": 4
+      "prep_time_min": 4,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_lemonade_1",
+          "measure": "400 мл",
+          "price": 1300,
+          "nutrition": {
+            "calories": 120,
+            "proteins": 0.5,
+            "fats": 0.2,
+            "carbs": 29
+          }
+        },
+        {
+          "variant_id": "var_lemonade_2",
+          "measure": "1 л",
+          "price": 2800,
+          "nutrition": {
+            "calories": 300,
+            "proteins": 1.2,
+            "fats": 0.5,
+            "carbs": 72
+          }
+        }
+      ]
     },
     {
-      "id": "frappe",
+      "id": "item_frappe",
+      "category_id": "cold_drinks",
       "name": "Фраппе карамельный",
-      "category": "cold",
-      "size_ml": 400,
-      "price": 1700,
-      "short": "Кофейный коктейль со льдом",
+      "image_url": "pictures/items/zerno/item_frappe.jpg",
       "description": "Эспрессо, молоко, карамель и лёд, взбитые в блендере до состояния нежного снега. Сверху — сливки и солёная карамель.",
-      "emoji": "🥤",
-      "nutrition": {
-        "kcal": 320,
-        "protein": 6,
-        "fat": 14,
-        "carbs": 42
-      },
       "ingredients": [
         "Эспрессо",
         "Молоко",
@@ -495,54 +631,64 @@
         "Взбитые сливки",
         "Лёд"
       ],
-      "prep_min": 5
+      "prep_time_min": 5,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_frappe_std",
+          "measure": "400 мл",
+          "price": 1700,
+          "nutrition": {
+            "calories": 320,
+            "proteins": 6.0,
+            "fats": 14,
+            "carbs": 42
+          }
+        }
+      ]
     },
     {
-      "id": "fresh",
+      "id": "item_fresh",
+      "category_id": "cold_drinks",
       "name": "Фреш апельсиновый",
-      "category": "cold",
-      "sizes": [
-        {
-          "label": "S",
-          "size_ml": 250,
-          "price": 1300
-        },
-        {
-          "label": "L",
-          "size_ml": 400,
-          "price": 1900
-        }
-      ],
-      "short": "Свежевыжатый сок из апельсинов",
+      "image_url": "pictures/items/zerno/item_fresh.jpg",
       "description": "Выжимаем при вас из спелых апельсинов. Без сахара и воды — только сок.",
-      "emoji": "🍊",
-      "nutrition": {
-        "kcal": 110,
-        "protein": 1.7,
-        "fat": 0.5,
-        "carbs": 26
-      },
       "ingredients": [
         "Апельсины"
       ],
-      "prep_min": 4
+      "prep_time_min": 4,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_fresh_1",
+          "measure": "250 мл",
+          "price": 1300,
+          "nutrition": {
+            "calories": 110,
+            "proteins": 1.7,
+            "fats": 0.5,
+            "carbs": 26
+          }
+        },
+        {
+          "variant_id": "var_fresh_2",
+          "measure": "400 мл",
+          "price": 1900,
+          "nutrition": {
+            "calories": 176,
+            "proteins": 2.7,
+            "fats": 0.8,
+            "carbs": 42
+          }
+        }
+      ]
     },
     {
-      "id": "syrniki",
+      "id": "item_syrniki",
+      "category_id": "breakfast",
       "name": "Сырники со сметаной",
-      "category": "breakfast",
-      "weight_g": 250,
-      "price": 1900,
-      "short": "Три пышных сырника, сметана и ягоды",
+      "image_url": "pictures/items/zerno/item_syrniki.jpg",
       "description": "Сырники из домашнего творога 9%, обжаренные до золотистой корочки. Подаём со сметаной, ягодным соусом и свежими ягодами.",
-      "emoji": "🥞",
-      "badge": "Хит",
-      "nutrition": {
-        "kcal": 480,
-        "protein": 26,
-        "fat": 20,
-        "carbs": 45
-      },
       "ingredients": [
         "Творог 9%",
         "Яйцо",
@@ -551,23 +697,28 @@
         "Ягодный соус",
         "Свежие ягоды"
       ],
-      "prep_min": 12
+      "prep_time_min": 12,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_syrniki_std",
+          "measure": "250 г",
+          "price": 1900,
+          "nutrition": {
+            "calories": 480,
+            "proteins": 26,
+            "fats": 20,
+            "carbs": 45
+          }
+        }
+      ]
     },
     {
-      "id": "omelette",
+      "id": "item_omelette",
+      "category_id": "breakfast",
       "name": "Омлет с сыром и томатами",
-      "category": "breakfast",
-      "weight_g": 230,
-      "price": 1800,
-      "short": "Три яйца, моцарелла, черри и тост",
+      "image_url": "pictures/items/zerno/item_omelette.jpg",
       "description": "Нежный омлет из трёх яиц с моцареллой и томатами черри. Подаём с хрустящим тостом и зеленью.",
-      "emoji": "🍳",
-      "nutrition": {
-        "kcal": 390,
-        "protein": 24,
-        "fat": 29,
-        "carbs": 6
-      },
       "ingredients": [
         "Яйцо",
         "Моцарелла",
@@ -576,24 +727,28 @@
         "Тост",
         "Зелень"
       ],
-      "prep_min": 10
+      "prep_time_min": 10,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_omelette_std",
+          "measure": "230 г",
+          "price": 1800,
+          "nutrition": {
+            "calories": 390,
+            "proteins": 24,
+            "fats": 29,
+            "carbs": 6.0
+          }
+        }
+      ]
     },
     {
-      "id": "avotoast",
+      "id": "item_avotoast",
+      "category_id": "breakfast",
       "name": "Тост с авокадо и пашот",
-      "category": "breakfast",
-      "weight_g": 210,
-      "price": 2400,
-      "short": "Цельнозерновой хлеб, гуакамоле, яйцо",
+      "image_url": "pictures/items/zerno/item_avotoast.jpg",
       "description": "Хрустящий цельнозерновой тост, гуакамоле, яйцо пашот, редис и микрозелень. Сбалансированный завтрак, после которого не тянет в сон.",
-      "emoji": "🥑",
-      "badge": "Новинка",
-      "nutrition": {
-        "kcal": 420,
-        "protein": 16,
-        "fat": 26,
-        "carbs": 32
-      },
       "ingredients": [
         "Цельнозерновой хлеб",
         "Авокадо",
@@ -603,23 +758,28 @@
         "Микрозелень",
         "Семена кунжута"
       ],
-      "prep_min": 10
+      "prep_time_min": 10,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_avotoast_std",
+          "measure": "210 г",
+          "price": 2400,
+          "nutrition": {
+            "calories": 420,
+            "proteins": 16,
+            "fats": 26,
+            "carbs": 32
+          }
+        }
+      ]
     },
     {
-      "id": "oatmeal",
+      "id": "item_oatmeal",
+      "category_id": "breakfast",
       "name": "Овсянка с ягодами",
-      "category": "breakfast",
-      "weight_g": 300,
-      "price": 1400,
-      "short": "На молоке, с мёдом и орехами",
+      "image_url": "pictures/items/zerno/item_oatmeal.jpg",
       "description": "Овсяная каша на молоке с ягодами, бананом, мёдом и грецкими орехами. Можно приготовить на воде или растительном молоке.",
-      "emoji": "🥣",
-      "nutrition": {
-        "kcal": 310,
-        "protein": 9,
-        "fat": 8,
-        "carbs": 50
-      },
       "ingredients": [
         "Овсяные хлопья",
         "Молоко 2,5%",
@@ -628,23 +788,28 @@
         "Мёд",
         "Грецкий орех"
       ],
-      "prep_min": 7
+      "prep_time_min": 7,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_oatmeal_std",
+          "measure": "300 г",
+          "price": 1400,
+          "nutrition": {
+            "calories": 310,
+            "proteins": 9.0,
+            "fats": 8.0,
+            "carbs": 50
+          }
+        }
+      ]
     },
     {
-      "id": "lagman",
+      "id": "item_lagman",
+      "category_id": "hot_meals",
       "name": "Лагман",
-      "category": "hot",
-      "weight_g": 400,
-      "price": 2600,
-      "short": "Тянутая лапша, говядина и овощи",
+      "image_url": "pictures/items/zerno/item_lagman.jpg",
       "description": "Домашняя тянутая лапша с говядиной, болгарским перцем, редькой и стручковой фасолью в густом ароматном соусе. Порция, после которой хочется жить.",
-      "emoji": "🍜",
-      "nutrition": {
-        "kcal": 560,
-        "protein": 28,
-        "fat": 20,
-        "carbs": 66
-      },
       "ingredients": [
         "Лапша ручной работы",
         "Говядина",
@@ -655,23 +820,28 @@
         "Чеснок",
         "Специи"
       ],
-      "prep_min": 15
+      "prep_time_min": 15,
+      "is_special": true,
+      "variants": [
+        {
+          "variant_id": "var_lagman_std",
+          "measure": "400 г",
+          "price": 2600,
+          "nutrition": {
+            "calories": 560,
+            "proteins": 28,
+            "fats": 20,
+            "carbs": 66
+          }
+        }
+      ]
     },
     {
-      "id": "carbonara",
+      "id": "item_carbonara",
+      "category_id": "hot_meals",
       "name": "Паста карбонара",
-      "category": "hot",
-      "weight_g": 320,
-      "price": 2800,
-      "short": "Спагетти, бекон, пармезан, желток",
+      "image_url": "pictures/items/zerno/item_carbonara.jpg",
       "description": "Спагетти в сливочном соусе на желтке с беконом и пармезаном, щедро присыпанные свежемолотым чёрным перцем.",
-      "emoji": "🍝",
-      "nutrition": {
-        "kcal": 690,
-        "protein": 27,
-        "fat": 34,
-        "carbs": 68
-      },
       "ingredients": [
         "Спагетти",
         "Бекон",
@@ -680,23 +850,28 @@
         "Пармезан",
         "Чёрный перец"
       ],
-      "prep_min": 14
+      "prep_time_min": 14,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_carbonara_std",
+          "measure": "320 г",
+          "price": 2800,
+          "nutrition": {
+            "calories": 690,
+            "proteins": 27,
+            "fats": 34,
+            "carbs": 68
+          }
+        }
+      ]
     },
     {
-      "id": "teriyaki",
+      "id": "item_teriyaki",
+      "category_id": "hot_meals",
       "name": "Курица терияки с рисом",
-      "category": "hot",
-      "weight_g": 350,
-      "price": 2700,
-      "short": "Бедро в глазури, жасмин и овощи",
+      "image_url": "pictures/items/zerno/item_teriyaki.jpg",
       "description": "Сочное куриное бедро в глазури терияки, рис жасмин, брокколи и морковь на пару. Посыпаем кунжутом и зелёным луком.",
-      "emoji": "🍛",
-      "nutrition": {
-        "kcal": 540,
-        "protein": 34,
-        "fat": 14,
-        "carbs": 68
-      },
       "ingredients": [
         "Куриное бедро",
         "Соус терияки",
@@ -706,23 +881,28 @@
         "Кунжут",
         "Зелёный лук"
       ],
-      "prep_min": 15
+      "prep_time_min": 15,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_teriyaki_std",
+          "measure": "350 г",
+          "price": 2700,
+          "nutrition": {
+            "calories": 540,
+            "proteins": 34,
+            "fats": 14,
+            "carbs": 68
+          }
+        }
+      ]
     },
     {
-      "id": "pumpkin",
+      "id": "item_pumpkin",
+      "category_id": "hot_meals",
       "name": "Тыквенный крем-суп",
-      "category": "hot",
-      "weight_g": 300,
-      "price": 1700,
-      "short": "Бархатный суп на сливках с семечками",
+      "image_url": "pictures/items/zerno/item_pumpkin.jpg",
       "description": "Запечённая тыква, сливки и немного имбиря. Подаём с тыквенными семечками и гренками.",
-      "emoji": "🎃",
-      "nutrition": {
-        "kcal": 260,
-        "protein": 5,
-        "fat": 16,
-        "carbs": 24
-      },
       "ingredients": [
         "Тыква",
         "Сливки 20%",
@@ -731,24 +911,28 @@
         "Тыквенные семечки",
         "Гренки"
       ],
-      "prep_min": 8
+      "prep_time_min": 8,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_pumpkin_std",
+          "measure": "300 г",
+          "price": 1700,
+          "nutrition": {
+            "calories": 260,
+            "proteins": 5.0,
+            "fats": 16,
+            "carbs": 24
+          }
+        }
+      ]
     },
     {
-      "id": "burger",
+      "id": "item_burger",
+      "category_id": "hot_meals",
       "name": "Бургер с говядиной",
-      "category": "hot",
-      "weight_g": 330,
-      "price": 3200,
-      "short": "Котлета 150 г, чеддер, бриошь",
+      "image_url": "pictures/items/zerno/item_burger.jpg",
       "description": "Сочная котлета из мраморной говядины, чеддер, маринованный огурец, томат, салат и фирменный соус в булочке бриошь.",
-      "emoji": "🍔",
-      "badge": "Хит",
-      "nutrition": {
-        "kcal": 760,
-        "protein": 38,
-        "fat": 42,
-        "carbs": 54
-      },
       "ingredients": [
         "Булочка бриошь",
         "Говядина",
@@ -758,23 +942,28 @@
         "Салат айсберг",
         "Фирменный соус"
       ],
-      "prep_min": 16
+      "prep_time_min": 16,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_burger_std",
+          "measure": "330 г",
+          "price": 3200,
+          "nutrition": {
+            "calories": 760,
+            "proteins": 38,
+            "fats": 42,
+            "carbs": 54
+          }
+        }
+      ]
     },
     {
-      "id": "club",
+      "id": "item_club",
+      "category_id": "snacks",
       "name": "Клаб-сэндвич",
-      "category": "snacks",
-      "weight_g": 280,
-      "price": 2300,
-      "short": "Курица, бекон, яйцо, овощи",
+      "image_url": "pictures/items/zerno/item_club.jpg",
       "description": "Трёхслойный сэндвич на поджаренном тосте с курицей, беконом, яйцом, томатом и салатом. Подаём с картофельными чипсами.",
-      "emoji": "🥪",
-      "nutrition": {
-        "kcal": 580,
-        "protein": 32,
-        "fat": 28,
-        "carbs": 46
-      },
       "ingredients": [
         "Тостовый хлеб",
         "Куриное филе",
@@ -784,46 +973,56 @@
         "Салат",
         "Майонез"
       ],
-      "prep_min": 9
+      "prep_time_min": 9,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_club_std",
+          "measure": "280 г",
+          "price": 2300,
+          "nutrition": {
+            "calories": 580,
+            "proteins": 32,
+            "fats": 28,
+            "carbs": 46
+          }
+        }
+      ]
     },
     {
-      "id": "fries",
+      "id": "item_fries",
+      "category_id": "snacks",
       "name": "Картофель фри",
-      "category": "snacks",
-      "weight_g": 150,
-      "price": 1100,
-      "short": "Хрустящий, с соусом на выбор",
+      "image_url": "pictures/items/zerno/item_fries.jpg",
       "description": "Золотистый картофель фри с морской солью. Соус на выбор: сырный, кетчуп или чесночный.",
-      "emoji": "🍟",
-      "nutrition": {
-        "kcal": 420,
-        "protein": 5,
-        "fat": 21,
-        "carbs": 52
-      },
       "ingredients": [
         "Картофель",
         "Растительное масло",
         "Морская соль",
         "Соус"
       ],
-      "prep_min": 7
+      "prep_time_min": 7,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_fries_std",
+          "measure": "150 г",
+          "price": 1100,
+          "nutrition": {
+            "calories": 420,
+            "proteins": 5.0,
+            "fats": 21,
+            "carbs": 52
+          }
+        }
+      ]
     },
     {
-      "id": "caesarroll",
+      "id": "item_caesarroll",
+      "category_id": "snacks",
       "name": "Ролл «Цезарь»",
-      "category": "snacks",
-      "weight_g": 260,
-      "price": 2100,
-      "short": "Курица, романо, пармезан в тортилье",
+      "image_url": "pictures/items/zerno/item_caesarroll.jpg",
       "description": "Всё, за что любят салат «Цезарь», в удобной тортилье: курица гриль, романо, томаты, пармезан и соус цезарь.",
-      "emoji": "🌯",
-      "nutrition": {
-        "kcal": 490,
-        "protein": 29,
-        "fat": 22,
-        "carbs": 40
-      },
       "ingredients": [
         "Пшеничная тортилья",
         "Куриное филе",
@@ -832,23 +1031,28 @@
         "Пармезан",
         "Соус цезарь"
       ],
-      "prep_min": 8
+      "prep_time_min": 8,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_caesarroll_std",
+          "measure": "260 г",
+          "price": 2100,
+          "nutrition": {
+            "calories": 490,
+            "proteins": 29,
+            "fats": 22,
+            "carbs": 40
+          }
+        }
+      ]
     },
     {
-      "id": "bruschetta",
+      "id": "item_bruschetta",
+      "category_id": "snacks",
       "name": "Брускетты с томатами",
-      "category": "snacks",
-      "weight_g": 180,
-      "price": 1600,
-      "short": "Три брускетты с томатами и базиликом",
+      "image_url": "pictures/items/zerno/item_bruschetta.jpg",
       "description": "Чиабатта на гриле, натёртая чесноком, с томатами, базиликом, оливковым маслом и бальзамическим кремом.",
-      "emoji": "🍅",
-      "nutrition": {
-        "kcal": 310,
-        "protein": 8,
-        "fat": 12,
-        "carbs": 42
-      },
       "ingredients": [
         "Чиабатта",
         "Томаты",
@@ -857,24 +1061,28 @@
         "Оливковое масло",
         "Бальзамический крем"
       ],
-      "prep_min": 7
+      "prep_time_min": 7,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_bruschetta_std",
+          "measure": "180 г",
+          "price": 1600,
+          "nutrition": {
+            "calories": 310,
+            "proteins": 8.0,
+            "fats": 12,
+            "carbs": 42
+          }
+        }
+      ]
     },
     {
-      "id": "cheesecake",
+      "id": "item_cheesecake",
+      "category_id": "desserts",
       "name": "Чизкейк Нью-Йорк",
-      "category": "desserts",
-      "weight_g": 130,
-      "price": 1600,
-      "short": "Классический сливочный чизкейк",
+      "image_url": "pictures/items/zerno/item_cheesecake.jpg",
       "description": "Плотный и сливочный чизкейк на песочной основе, запечённый на водяной бане. Подаём с ягодным соусом.",
-      "emoji": "🍰",
-      "badge": "Хит",
-      "nutrition": {
-        "kcal": 410,
-        "protein": 7,
-        "fat": 28,
-        "carbs": 32
-      },
       "ingredients": [
         "Сливочный сыр",
         "Сливки",
@@ -884,23 +1092,28 @@
         "Сливочное масло",
         "Ягодный соус"
       ],
-      "prep_min": 2
+      "prep_time_min": 2,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_cheesecake_std",
+          "measure": "130 г",
+          "price": 1600,
+          "nutrition": {
+            "calories": 410,
+            "proteins": 7.0,
+            "fats": 28,
+            "carbs": 32
+          }
+        }
+      ]
     },
     {
-      "id": "medovik",
+      "id": "item_medovik",
+      "category_id": "desserts",
       "name": "Медовик",
-      "category": "desserts",
-      "weight_g": 140,
-      "price": 1500,
-      "short": "Медовые коржи и сметанный крем",
+      "image_url": "pictures/items/zerno/item_medovik.jpg",
       "description": "Тонкие медовые коржи, пропитанные нежным сметанным кремом. Печём сами по бабушкиному рецепту.",
-      "emoji": "🎂",
-      "nutrition": {
-        "kcal": 450,
-        "protein": 6,
-        "fat": 22,
-        "carbs": 56
-      },
       "ingredients": [
         "Мука",
         "Мёд",
@@ -909,23 +1122,28 @@
         "Яйцо",
         "Сахар"
       ],
-      "prep_min": 2
+      "prep_time_min": 2,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_medovik_std",
+          "measure": "140 г",
+          "price": 1500,
+          "nutrition": {
+            "calories": 450,
+            "proteins": 6.0,
+            "fats": 22,
+            "carbs": 56
+          }
+        }
+      ]
     },
     {
-      "id": "pannacotta",
+      "id": "item_pannacotta",
+      "category_id": "desserts",
       "name": "Панна-котта с маракуйей",
-      "category": "desserts",
-      "weight_g": 150,
-      "price": 1400,
-      "short": "Сливочный десерт с тропическим соусом",
+      "image_url": "pictures/items/zerno/item_pannacotta.jpg",
       "description": "Нежная ванильная панна-котта на сливках с кисло-сладким соусом из маракуйи.",
-      "emoji": "🍮",
-      "nutrition": {
-        "kcal": 280,
-        "protein": 3,
-        "fat": 20,
-        "carbs": 22
-      },
       "ingredients": [
         "Сливки 33%",
         "Ваниль",
@@ -933,23 +1151,28 @@
         "Сахар",
         "Маракуйя"
       ],
-      "prep_min": 2
+      "prep_time_min": 2,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_pannacotta_std",
+          "measure": "150 г",
+          "price": 1400,
+          "nutrition": {
+            "calories": 280,
+            "proteins": 3.0,
+            "fats": 20,
+            "carbs": 22
+          }
+        }
+      ]
     },
     {
-      "id": "brownie",
+      "id": "item_brownie",
+      "category_id": "desserts",
       "name": "Брауни с мороженым",
-      "category": "desserts",
-      "weight_g": 170,
-      "price": 1700,
-      "short": "Тёплый брауни и шарик пломбира",
+      "image_url": "pictures/items/zerno/item_brownie.jpg",
       "description": "Влажный шоколадный брауни с грецким орехом, подаётся тёплым с шариком пломбира и шоколадным соусом.",
-      "emoji": "🍫",
-      "nutrition": {
-        "kcal": 520,
-        "protein": 7,
-        "fat": 30,
-        "carbs": 56
-      },
       "ingredients": [
         "Тёмный шоколад",
         "Сливочное масло",
@@ -958,44 +1181,54 @@
         "Грецкий орех",
         "Пломбир"
       ],
-      "prep_min": 4
+      "prep_time_min": 4,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_brownie_std",
+          "measure": "170 г",
+          "price": 1700,
+          "nutrition": {
+            "calories": 520,
+            "proteins": 7.0,
+            "fats": 30,
+            "carbs": 56
+          }
+        }
+      ]
     },
     {
-      "id": "icecream",
+      "id": "item_icecream",
+      "category_id": "desserts",
       "name": "Мороженое пломбир",
-      "category": "desserts",
-      "weight_g": 100,
-      "price": 900,
-      "short": "Два шарика с топпингом",
+      "image_url": "pictures/items/zerno/item_icecream.jpg",
       "description": "Сливочный пломбир — два шарика. Топпинг на выбор: карамель, шоколад или ягоды.",
-      "emoji": "🍨",
-      "nutrition": {
-        "kcal": 230,
-        "protein": 4,
-        "fat": 15,
-        "carbs": 21
-      },
       "ingredients": [
         "Пломбир 15%",
         "Топпинг на выбор"
       ],
-      "prep_min": 2
+      "prep_time_min": 2,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_icecream_std",
+          "measure": "100 г",
+          "price": 900,
+          "nutrition": {
+            "calories": 230,
+            "proteins": 4.0,
+            "fats": 15,
+            "carbs": 21
+          }
+        }
+      ]
     },
     {
-      "id": "croissant",
+      "id": "item_croissant",
+      "category_id": "pastry",
       "name": "Круассан",
-      "category": "bakery",
-      "weight_g": 70,
-      "price": 900,
-      "short": "Слоёный, на сливочном масле",
+      "image_url": "pictures/items/zerno/item_croissant.jpg",
       "description": "Хрустящий снаружи и воздушный внутри круассан на французском сливочном масле 82%. Подогреем перед подачей.",
-      "emoji": "🥐",
-      "nutrition": {
-        "kcal": 290,
-        "protein": 6,
-        "fat": 17,
-        "carbs": 28
-      },
       "ingredients": [
         "Мука",
         "Сливочное масло 82%",
@@ -1003,46 +1236,56 @@
         "Дрожжи",
         "Сахар"
       ],
-      "prep_min": 3
+      "prep_time_min": 3,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_croissant_std",
+          "measure": "70 г",
+          "price": 900,
+          "nutrition": {
+            "calories": 290,
+            "proteins": 6.0,
+            "fats": 17,
+            "carbs": 28
+          }
+        }
+      ]
     },
     {
-      "id": "almondcroissant",
+      "id": "item_almondcroissant",
+      "category_id": "pastry",
       "name": "Круассан миндальный",
-      "category": "bakery",
-      "weight_g": 95,
-      "price": 1200,
-      "short": "С франжипаном и лепестками миндаля",
+      "image_url": "pictures/items/zerno/item_almondcroissant.jpg",
       "description": "Круассан с миндальным кремом франжипан внутри, лепестками миндаля и сахарной пудрой сверху.",
-      "emoji": "🥐",
-      "nutrition": {
-        "kcal": 410,
-        "protein": 9,
-        "fat": 25,
-        "carbs": 37
-      },
       "ingredients": [
         "Слоёное тесто",
         "Миндальный крем",
         "Миндаль",
         "Сахарная пудра"
       ],
-      "prep_min": 3
+      "prep_time_min": 3,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_almondcroissant_std",
+          "measure": "95 г",
+          "price": 1200,
+          "nutrition": {
+            "calories": 410,
+            "proteins": 9.0,
+            "fats": 25,
+            "carbs": 37
+          }
+        }
+      ]
     },
     {
-      "id": "muffin",
+      "id": "item_muffin",
+      "category_id": "pastry",
       "name": "Маффин черничный",
-      "category": "bakery",
-      "weight_g": 110,
-      "price": 900,
-      "short": "Влажный маффин с крошкой",
+      "image_url": "pictures/items/zerno/item_muffin.jpg",
       "description": "Сливочный маффин с целыми ягодами черники и хрустящей штрейзельной крошкой.",
-      "emoji": "🧁",
-      "nutrition": {
-        "kcal": 380,
-        "protein": 5,
-        "fat": 18,
-        "carbs": 49
-      },
       "ingredients": [
         "Мука",
         "Черника",
@@ -1051,23 +1294,28 @@
         "Сахар",
         "Кефир"
       ],
-      "prep_min": 2
+      "prep_time_min": 2,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_muffin_std",
+          "measure": "110 г",
+          "price": 900,
+          "nutrition": {
+            "calories": 380,
+            "proteins": 5.0,
+            "fats": 18,
+            "carbs": 49
+          }
+        }
+      ]
     },
     {
-      "id": "donut",
+      "id": "item_donut",
+      "category_id": "pastry",
       "name": "Пончик с глазурью",
-      "category": "bakery",
-      "weight_g": 80,
-      "price": 800,
-      "short": "Пышный пончик с розовой глазурью",
+      "image_url": "pictures/items/zerno/item_donut.jpg",
       "description": "Воздушный дрожжевой пончик с малиновой глазурью и посыпкой.",
-      "emoji": "🍩",
-      "nutrition": {
-        "kcal": 320,
-        "protein": 4,
-        "fat": 16,
-        "carbs": 40
-      },
       "ingredients": [
         "Мука",
         "Молоко",
@@ -1075,23 +1323,28 @@
         "Сахар",
         "Малиновая глазурь"
       ],
-      "prep_min": 2
+      "prep_time_min": 2,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_donut_std",
+          "measure": "80 г",
+          "price": 800,
+          "nutrition": {
+            "calories": 320,
+            "proteins": 4.0,
+            "fats": 16,
+            "carbs": 40
+          }
+        }
+      ]
     },
     {
-      "id": "samsa",
+      "id": "item_samsa",
+      "category_id": "pastry",
       "name": "Самса с курицей",
-      "category": "bakery",
-      "weight_g": 150,
-      "price": 1000,
-      "short": "Слоёная, из тандыра",
+      "image_url": "pictures/items/zerno/item_samsa.jpg",
       "description": "Хрустящая слоёная самса с сочной начинкой из курицы и лука. Выпекаем каждое утро.",
-      "emoji": "🥟",
-      "nutrition": {
-        "kcal": 420,
-        "protein": 17,
-        "fat": 24,
-        "carbs": 34
-      },
       "ingredients": [
         "Слоёное тесто",
         "Куриное филе",
@@ -1099,31 +1352,49 @@
         "Зира",
         "Чёрный перец"
       ],
-      "prep_min": 3
+      "prep_time_min": 3,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_samsa_std",
+          "measure": "150 г",
+          "price": 1000,
+          "nutrition": {
+            "calories": 420,
+            "proteins": 17,
+            "fats": 24,
+            "carbs": 34
+          }
+        }
+      ]
     },
     {
-      "id": "combo_morning",
+      "id": "item_combo_morning",
+      "category_id": "combo",
       "name": "Комбо «Доброе утро»",
-      "category": "combo",
-      "amount": "Капучино 350 мл + сырники 250 г",
-      "price": 2700,
-      "old_price": 3200,
-      "short": "Капучино M + сырники со сметаной",
+      "image_url": "pictures/items/zerno/item_combo_morning.jpg",
       "description": "Наш самый любимый завтрак по специальной цене: капучино 350 мл и три сырника со сметаной и ягодами. Действует весь день.",
-      "emoji": "☕🥞",
-      "nutrition": {
-        "kcal": 613,
-        "protein": 33,
-        "fat": 27,
-        "carbs": 55
-      },
       "ingredients": [
         "Капучино 350 мл",
         "Сырники со сметаной",
         "Ягодный соус",
         "Свежие ягоды"
       ],
-      "prep_min": 12
+      "prep_time_min": 12,
+      "is_special": true,
+      "variants": [
+        {
+          "variant_id": "var_combo_morning_std",
+          "measure": "Капучино 350 мл + сырники 250 г",
+          "price": 2700,
+          "nutrition": {
+            "calories": 613,
+            "proteins": 33,
+            "fats": 27,
+            "carbs": 55
+          }
+        }
+      ]
     }
   ]
 }

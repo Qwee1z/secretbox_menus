@@ -1,0 +1,8 @@
+{
+  "json.schemas": [
+    {
+      "fileMatch": ["/coffee-menu/cafes/*.json"],
+      "url": "./coffee-menu/data/menu.schema.json"
+    }
+  ]
+}

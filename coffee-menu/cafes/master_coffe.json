@@ -1,0 +1,507 @@
+{
+  "categories": [
+    {
+      "id": "coffee",
+      "name": "Кофе",
+      "icon": "☕",
+      "order": 1
+    },
+    {
+      "id": "tea",
+      "name": "Чай и Матча",
+      "icon": "🍵",
+      "order": 2
+    },
+    {
+      "id": "cold_drinks",
+      "name": "Холодные напитки",
+      "icon": "🧊",
+      "order": 3
+    },
+    {
+      "id": "pastry",
+      "name": "Выпечка",
+      "icon": "🥐",
+      "order": 4
+    },
+    {
+      "id": "desserts",
+      "name": "Десерты",
+      "icon": "🍰",
+      "order": 5
+    },
+    {
+      "id": "breakfast",
+      "name": "Завтраки",
+      "icon": "🍳",
+      "order": 6
+    },
+    {
+      "id": "snacks",
+      "name": "Закуски и Сэндвичи",
+      "icon": "🥪",
+      "order": 7
+    },
+    {
+      "id": "hot_meals",
+      "name": "Горячие блюда",
+      "icon": "🍲",
+      "order": 8
+    }
+  ],
+  "items": [
+    {
+      "id": "item_espresso",
+      "category_id": "coffee",
+      "name": "Эспрессо",
+      "image_url": "pictures/items/master_coffe/item_espresso.jpg",
+      "description": "Классический насыщенный эспрессо.",
+      "ingredients": [
+        "Кофейные зерна (100% Арабика)",
+        "Вода"
+      ],
+      "prep_time_min": 3,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_espresso_std",
+          "measure": "30 мл",
+          "price": 590,
+          "nutrition": {
+            "calories": 2,
+            "proteins": 0.1,
+            "fats": 0,
+            "carbs": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "item_americano",
+      "category_id": "coffee",
+      "name": "Американо / Фильтр",
+      "image_url": "pictures/items/master_coffe/item_americano.jpg",
+      "description": "Эспрессо, разбавленный горячей водой, или классический фильтр-кофе.",
+      "ingredients": [
+        "Эспрессо",
+        "Горячая вода"
+      ],
+      "prep_time_min": 3,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_americano_std",
+          "measure": "250 мл",
+          "price": 690,
+          "nutrition": {
+            "calories": 5,
+            "proteins": 0.1,
+            "fats": 0,
+            "carbs": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "item_latte_sharlotka",
+      "category_id": "coffee",
+      "name": "Латте шарлотка",
+      "image_url": "pictures/items/master_coffe/item_latte_sharlotka.jpg",
+      "description": "Латте со вкусом одноименного пирога.",
+      "ingredients": null,
+      "prep_time_min": 5,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_latte_sharlotka_std",
+          "measure": "350 мл",
+          "price": 1790,
+          "nutrition": {
+            "calories": 65,
+            "proteins": 2,
+            "fats": 2.3,
+            "carbs": 9.3
+          }
+        }
+      ]
+    },
+    {
+      "id": "item_cappuccino",
+      "category_id": "coffee",
+      "name": "Флэт Уайт / Капучино",
+      "image_url": "pictures/items/master_coffe/item_cappuccino.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": 5,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_cappuccino_std",
+          "measure": "300 мл",
+          "price": 1090,
+          "nutrition": null
+        }
+      ]
+    },
+    {
+      "id": "item_latte",
+      "category_id": "coffee",
+      "name": "Латте",
+      "image_url": "pictures/items/master_coffe/item_latte.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": 5,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_latte_std",
+          "measure": "400 мл",
+          "price": 1190,
+          "nutrition": null
+        }
+      ]
+    },
+    {
+      "id": "item_raf",
+      "category_id": "coffee",
+      "name": "Раф классический",
+      "image_url": "pictures/items/master_coffe/item_raf.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": 5,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_raf_std",
+          "measure": "350 мл",
+          "price": 1490,
+          "nutrition": null
+        }
+      ]
+    },
+    {
+      "id": "item_matcha_latte",
+      "category_id": "tea",
+      "name": "Матча латте горячий",
+      "image_url": "pictures/items/master_coffe/item_matcha_latte.jpg",
+      "description": "Японский зеленый чай матча со взбитым молоком.",
+      "ingredients": [
+        "Чай матча",
+        "Молоко",
+        "Сироп"
+      ],
+      "prep_time_min": 5,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_matcha_latte_std",
+          "measure": "300 мл",
+          "price": 1390,
+          "nutrition": {
+            "calories": 120,
+            "proteins": 4,
+            "fats": 4,
+            "carbs": 10
+          }
+        }
+      ]
+    },
+    {
+      "id": "item_tea_black",
+      "category_id": "tea",
+      "name": "Чай черный",
+      "image_url": "pictures/items/master_coffe/item_tea_black.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": 3,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_tea_black_std",
+          "measure": "400 мл",
+          "price": 490,
+          "nutrition": null
+        }
+      ]
+    },
+    {
+      "id": "item_lemon_pie_latte",
+      "category_id": "cold_drinks",
+      "name": "Lemon pie latte",
+      "image_url": "pictures/items/master_coffe/item_lemon_pie_latte.jpg",
+      "description": "Кофе с молоком, цитросовым соусом и сырной пеной.",
+      "ingredients": null,
+      "prep_time_min": 5,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_lemon_pie_latte_std",
+          "measure": null,
+          "price": 1790,
+          "nutrition": {
+            "calories": 81.1,
+            "proteins": 2.2,
+            "fats": 4.2,
+            "carbs": 8.5
+          }
+        }
+      ]
+    },
+    {
+      "id": "item_espresso_tonic",
+      "category_id": "cold_drinks",
+      "name": "Эспрессо-тоник",
+      "image_url": "pictures/items/master_coffe/item_espresso_tonic.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": 4,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_espresso_tonic_std",
+          "measure": "350 мл",
+          "price": 1290,
+          "nutrition": null
+        }
+      ]
+    },
+    {
+      "id": "item_croissant_classic",
+      "category_id": "pastry",
+      "name": "Круассан классический",
+      "image_url": "pictures/items/master_coffe/item_croissant_classic.jpg",
+      "description": "Свежеиспеченный хрустящий круассан на сливочном масле.",
+      "ingredients": [
+        "Пшеничная мука",
+        "Сливочное масло 82%",
+        "Сахар",
+        "Дрожжи"
+      ],
+      "prep_time_min": 2,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_croissant_classic_std",
+          "measure": "80 г",
+          "price": 590,
+          "nutrition": {
+            "calories": 320,
+            "proteins": 6,
+            "fats": 18,
+            "carbs": 35
+          }
+        }
+      ]
+    },
+    {
+      "id": "item_croissant_almond",
+      "category_id": "pastry",
+      "name": "Круассан миндальный",
+      "image_url": "pictures/items/master_coffe/item_croissant_almond.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": 2,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_croissant_almond_std",
+          "measure": "120 г",
+          "price": 1290,
+          "nutrition": null
+        }
+      ]
+    },
+    {
+      "id": "item_croissant_salmon",
+      "category_id": "snacks",
+      "name": "Круассан с семгой",
+      "image_url": "pictures/items/master_coffe/item_croissant_salmon.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": 7,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_croissant_salmon_std",
+          "measure": "180 г",
+          "price": 1890,
+          "nutrition": null
+        }
+      ]
+    },
+    {
+      "id": "item_brownie",
+      "category_id": "desserts",
+      "name": "Брауни",
+      "image_url": "pictures/items/master_coffe/item_brownie.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": 2,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_brownie_std",
+          "measure": "100 г",
+          "price": 990,
+          "nutrition": null
+        }
+      ]
+    },
+    {
+      "id": "item_cheesecake_cherry",
+      "category_id": "desserts",
+      "name": "Чизкейк вишня в шоколаде",
+      "image_url": "pictures/items/master_coffe/item_cheesecake_cherry.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": 2,
+      "is_special": true,
+      "variants": [
+        {
+          "variant_id": "var_cheesecake_cherry_std",
+          "measure": "150 г",
+          "price": 2190,
+          "nutrition": null
+        }
+      ]
+    },
+    {
+      "id": "item_breakfast_english",
+      "category_id": "breakfast",
+      "name": "Завтрак \"Английский\"",
+      "image_url": "pictures/items/master_coffe/item_breakfast_english.jpg",
+      "description": "Сытный традиционный завтрак с глазуньей, беконом, фасолью и тостами.",
+      "ingredients": [
+        "Яйцо",
+        "Бекон",
+        "Фасоль в томате",
+        "Сосиски",
+        "Грибы",
+        "Тост"
+      ],
+      "prep_time_min": 15,
+      "is_special": true,
+      "variants": [
+        {
+          "variant_id": "var_breakfast_english_std",
+          "measure": "350 г",
+          "price": 2490,
+          "nutrition": {
+            "calories": 650,
+            "proteins": 28,
+            "fats": 45,
+            "carbs": 35
+          }
+        }
+      ]
+    },
+    {
+      "id": "item_omelette_bacon",
+      "category_id": "breakfast",
+      "name": "Омлет с беконом",
+      "image_url": "pictures/items/master_coffe/item_omelette_bacon.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": 10,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_omelette_bacon_std",
+          "measure": "250 г",
+          "price": 1490,
+          "nutrition": null
+        }
+      ]
+    },
+    {
+      "id": "item_syrniki",
+      "category_id": "breakfast",
+      "name": "Сырники с ягодами",
+      "image_url": "pictures/items/master_coffe/item_syrniki.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": 12,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_syrniki_std",
+          "measure": "200 г",
+          "price": 1690,
+          "nutrition": null
+        }
+      ]
+    },
+    {
+      "id": "item_avocado_toast",
+      "category_id": "breakfast",
+      "name": "Авокадо тост с яйцом пашот",
+      "image_url": "pictures/items/master_coffe/item_avocado_toast.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": 10,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_avocado_toast_std",
+          "measure": "220 г",
+          "price": 1990,
+          "nutrition": null
+        }
+      ]
+    },
+    {
+      "id": "item_sandwich_salmon",
+      "category_id": "snacks",
+      "name": "Тост-сэндвич с лососем",
+      "image_url": "pictures/items/master_coffe/item_sandwich_salmon.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": 8,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_sandwich_salmon_std",
+          "measure": "250 г",
+          "price": 2190,
+          "nutrition": null
+        }
+      ]
+    },
+    {
+      "id": "item_bowl_chicken",
+      "category_id": "hot_meals",
+      "name": "Боул с курицей и киноа",
+      "image_url": "pictures/items/master_coffe/item_bowl_chicken.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": 15,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_bowl_chicken_std",
+          "measure": "300 г",
+          "price": 2290,
+          "nutrition": null
+        }
+      ]
+    },
+    {
+      "id": "item_tom_yum",
+      "category_id": "hot_meals",
+      "name": "Том Ям",
+      "image_url": "pictures/items/master_coffe/item_tom_yum.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": 20,
+      "is_special": true,
+      "variants": [
+        {
+          "variant_id": "var_tom_yum_std",
+          "measure": "350 г",
+          "price": 2490,
+          "nutrition": null
+        }
+      ]
+    }
+  ]
+}

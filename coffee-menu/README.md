@@ -1,4 +1,4 @@
-# Меню кофейни
+# Secretbox — меню кофеен
 
 Сайт-меню с заказом. Все данные лежат в JSON — код сайта менять не нужно, чтобы добавить кофейню, позицию или поменять цену.
 
@@ -11,72 +11,90 @@
 
 | Файл | Что внутри | Будущая таблица в БД |
 |---|---|---|
-| `data/cafes.json` | список кофеен и путь к файлу меню каждой | `cafes` |
-| `cafes/<id>.json` | информация о кофейне, позиции дня и позиции меню | `cafes`, `items`, `specials` |
-| `data/categories.json` | разделы меню: название, эмодзи, цвета, что к чему рекомендовать | `categories` |
+| `data/cafes.json` | бренд Secretbox и список кофеен: название, логотип, адрес, валюта, файл меню | `cafes` |
+| `cafes/<id>.json` | разделы и позиции меню кофейни (шаблон — `master_coffe.json`) | `categories`, `items`, `variants` |
+| `data/categories.json` | общие настройки разделов: цвет карточек, что к чему рекомендовать, время по умолчанию | `category_styles` |
 | `data/menu.schema.json` | описание формата меню (подсказки и проверка в VS Code) | — |
+| `pictures/logos/` | логотипы | — |
+| `pictures/items/<id кофейни>/` | фото позиций | — |
 
-Кофейня открывается по адресу `?cafe=<id>`. Без параметра показывается список кофеен.
+Кофейня открывается по адресу `?cafe=<id>`. Без параметра — начальный экран Secretbox со списком кофеен.
 
-## Как добавить кофейню
+## Правило `null`
 
-1. Создать `cafes/new_cafe.json` (можно пустым — будет «Меню пока пустое»).
-2. Добавить строку в `data/cafes.json`:
-   ```json
-   { "id": "new_cafe", "file": "cafes/new_cafe.json" }
-   ```
+Если у позиции чего-то нет (описание, состав, объём, КБЖУ, время приготовления) — пишите `null`. Блок под это значение на сайте не создаётся.
 
-## Формат меню
+## Фото позиций
 
-Обязательны только `name` и `price` у позиции — всё остальное по желанию. Чего нет в JSON, того нет и на сайте (например, без `nutrition` блок КБЖУ не показывается).
+У каждой позиции уже прописан путь в `image_url`, например:
+
+```
+pictures/items/master_coffe/item_latte.jpg
+```
+
+Достаточно положить файл с таким именем в эту папку — фото появится. Пока файла нет, показывается иконка раздела.
+
+## Формат меню (`cafes/<id>.json`)
 
 ```json
 {
-  "$schema": "../data/menu.schema.json",
-  "cafe": { "name": "Ayu", "address": "ул. Абая, 1", "city": "Алматы", "hours": "до 22:00" },
-  "currency": "KZT",
-  "specials": [
-    { "label": "Напиток дня", "item": "Раф" }
+  "categories": [
+    { "id": "coffee", "name": "Кофе", "icon": "☕", "order": 1 }
   ],
   "items": [
-    { "name": "Раф", "category": "coffee", "price": 1590 },
     {
-      "id": "cappuccino",
-      "name": "Капучино",
-      "category": "coffee",
-      "sizes": [
-        { "label": "S", "size_ml": 250, "price": 1090 },
-        { "label": "M", "size_ml": 350, "price": 1290 }
-      ],
-      "short": "Эспрессо и молочная пена",
-      "description": "Подробное описание для окна позиции",
-      "emoji": "☕",
-      "image": "https://…/photo.jpg",
-      "badge": "Хит",
-      "old_price": 1400,
-      "nutrition": { "kcal": 95, "protein": 5, "fat": 5, "carbs": 7 },
-      "ingredients": ["Эспрессо", "Молоко"],
-      "prep_min": 4,
-      "available": true
+      "id": "item_latte",
+      "category_id": "coffee",
+      "name": "Латте",
+      "image_url": "pictures/items/master_coffe/item_latte.jpg",
+      "description": null,
+      "ingredients": null,
+      "prep_time_min": 5,
+      "is_special": false,
+      "variants": [
+        {
+          "variant_id": "var_latte_std",
+          "measure": "400 мл",
+          "price": 1190,
+          "nutrition": null
+        }
+      ]
     }
   ]
 }
 ```
 
-- `category` — id раздела из `data/categories.json`; неизвестный или пустой → «Другое».
-- `id` — постоянный идентификатор позиции. Если его нет, используется название — тогда при переименовании позиция пропадёт из уже собранных заказов гостей.
-- `specials[].item` — `id` позиции (или её название, если `id` нет).
-- `available: false` — временно скрыть позицию, не удаляя её.
-- `nutrition` для позиции с `sizes` указывается на первый размер, для остальных пересчитывается по `size_ml` / `weight_g`.
+- `category_id` — один из разделов файла. Цвет и рекомендации берутся из `data/categories.json` по тому же id (`coffee`, `tea`, `cocoa`, `cold_drinks`, `pastry`, `desserts`, `breakfast`, `snacks`, `hot_meals`, `combo`).
+- `is_special: true` — позиция попадает в блок «Сегодня в меню».
+- `variants` — если вариантов несколько (например, 250 / 350 / 450 мл), на сайте появляется выбор, у каждого своя цена и КБЖУ.
+- `id` позиции не меняйте после запуска — по нему хранятся заказы гостей.
+
+## Как добавить кофейню
+
+1. Создать `cafes/new_cafe.json` (можно пустым — будет «Меню пока пустое»).
+2. Положить логотип в `pictures/logos/`.
+3. Добавить кофейню в `data/cafes.json`:
+   ```json
+   {
+     "id": "new_cafe",
+     "name": "New Cafe",
+     "file": "cafes/new_cafe.json",
+     "logo": "pictures/logos/logo_new.png",
+     "address": null,
+     "city": null,
+     "hours": null,
+     "currency": "KZT"
+   }
+   ```
 
 ## Переход на базу данных
 
-Весь доступ к данным — в `api.js` (`getCafes`, `getMenu`, `getCategories`). Чтобы перейти на БД, нужен сервер, который отдаёт JSON того же формата, и замена адресов в `ENDPOINTS`:
+Весь доступ к данным — в `api.js` (`getCafes`, `getMenu`, `getStyles`). Чтобы перейти на БД, нужен сервер, который отдаёт JSON того же формата, и замена адресов в `ENDPOINTS`:
 
 ```js
-cafes:      () => '/api/cafes',
-menu:       cafe => `/api/cafes/${cafe.id}/menu`,
-categories: () => '/api/categories',
+cafes:  () => '/api/cafes',
+menu:   cafe => `/api/cafes/${cafe.id}/menu`,
+styles: () => '/api/category-styles',
 ```
 
 `app.js` работает только с уже нормализованными данными и при этом не меняется.

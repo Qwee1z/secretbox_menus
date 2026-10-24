@@ -7,9 +7,9 @@ const API = (() => {
   'use strict';
 
   const ENDPOINTS = {
-    categories: () => 'data/categories.json',   // будущее: /api/categories
-    cafes:      () => 'data/cafes.json',        // будущее: /api/cafes
-    menu:       cafe => cafe.file,              // будущее: `/api/cafes/${cafe.id}/menu`
+    styles: () => 'data/categories.json',   // будущее: /api/category-styles
+    cafes:  () => 'data/cafes.json',        // будущее: /api/cafes
+    menu:   cafe => cafe.file,              // будущее: `/api/cafes/${cafe.id}/menu`
   };
 
   class DataError extends Error {
@@ -33,133 +33,139 @@ const API = (() => {
     }
   }
 
-  // ───────── справочник разделов
+  // null, '', [] — «нет данных»: такие блоки на сайте не показываются
+  const present = v => v !== null && v !== undefined && v !== '' && !(Array.isArray(v) && !v.length);
+  const num = v => (present(v) && Number.isFinite(Number(v)) ? Number(v) : null);
+  const str = v => (present(v) ? String(v) : null);
 
-  const FALLBACK_CATEGORY = {
+  // ───────── общие стили разделов (цвет, тип, рекомендации)
+
+  const FALLBACK_STYLE = {
     id: 'other', name: 'Другое', emoji: '🍽️', kind: 'other',
-    colors: ['#f1ebe4', '#c9b6a3'], pairs_with: [], default_prep_min: 5,
+    colors: ['#f1ebe4', '#c9b6a3'], pairsWith: [], prep: 5,
   };
 
-  async function getCategories() {
-    const raw = await getJSON(ENDPOINTS.categories());
-    const list = (raw && raw.categories) || [];
-    if (!list.some(c => c.id === FALLBACK_CATEGORY.id)) list.push(FALLBACK_CATEGORY);
-    return list.map(c => ({
-      id: String(c.id),
-      name: c.name || c.id,
-      emoji: c.emoji || '🍽️',
-      kind: c.kind || 'other',
-      colors: Array.isArray(c.colors) && c.colors.length === 2 ? c.colors : FALLBACK_CATEGORY.colors,
-      pairsWith: Array.isArray(c.pairs_with) ? c.pairs_with : [],
-      prep: Number(c.default_prep_min) || 5,
-      hidden: Boolean(c.hidden),
-    }));
+  async function getStyles() {
+    const raw = await getJSON(ENDPOINTS.styles());
+    const styles = {};
+    ((raw && raw.categories) || []).forEach(c => {
+      styles[c.id] = {
+        id: String(c.id),
+        name: c.name || c.id,
+        emoji: c.emoji || FALLBACK_STYLE.emoji,
+        kind: c.kind || 'other',
+        colors: Array.isArray(c.colors) && c.colors.length === 2 ? c.colors : FALLBACK_STYLE.colors,
+        pairsWith: Array.isArray(c.pairs_with) ? c.pairs_with : [],
+        prep: num(c.default_prep_min) || FALLBACK_STYLE.prep,
+      };
+    });
+    if (!styles.other) styles.other = FALLBACK_STYLE;
+    return styles;
   }
 
-  // ───────── кофейни
+  // ───────── реестр кофеен
 
   async function getCafes() {
-    const raw = await getJSON(ENDPOINTS.cafes());
-    return ((raw && raw.cafes) || [])
+    const raw = (await getJSON(ENDPOINTS.cafes())) || {};
+    const brand = raw.brand || {};
+    const cafes = (Array.isArray(raw.cafes) ? raw.cafes : [])
       .filter(c => c && c.id && c.file)
-      .map(c => ({ id: String(c.id), file: c.file, name: c.name || null }));
+      .map(c => ({
+        id: String(c.id),
+        file: c.file,
+        name: str(c.name) || String(c.id),
+        logo: str(c.logo),
+        address: str(c.address),
+        city: str(c.city),
+        hours: str(c.hours),
+        currency: str(c.currency) || 'KZT',
+      }));
+    return { brand: { name: str(brand.name) || 'Меню', logo: str(brand.logo) }, cafes };
   }
 
   // ───────── меню кофейни
 
-  const amountOf = s => s.amount
-    || (s.size_ml ? `${s.size_ml} мл` : s.weight_g ? `${s.weight_g} г` : null);
+  function normalizeCategory(raw, styles, index) {
+    const style = styles[raw.id] || styles.other;
+    return {
+      ...style,
+      id: String(raw.id),
+      name: str(raw.name) || style.name,
+      emoji: str(raw.icon) || style.emoji,
+      order: num(raw.order) ?? 1000 + index,
+    };
+  }
 
-  function normalizeItem(raw, index, catsById, usedIds) {
-    if (!raw || typeof raw !== 'object' || !raw.name) {
+  function normalizeNutrition(n) {
+    if (!n || typeof n !== 'object') return null;
+    const res = { kcal: num(n.calories), p: num(n.proteins), f: num(n.fats), c: num(n.carbs) };
+    return Object.values(res).some(v => v !== null) ? res : null;
+  }
+
+  function normalizeItem(raw, index, cats, styles, usedIds) {
+    if (!raw || typeof raw !== 'object' || !present(raw.name)) {
       console.warn(`Позиция #${index + 1} пропущена: нет названия`, raw);
       return null;
     }
-    if (raw.available === false) return null;
 
-    const cat = catsById[raw.category] || catsById.other;
-
-    let sizes = null;
-    if (Array.isArray(raw.sizes) && raw.sizes.length) {
-      sizes = raw.sizes
-        .filter(s => s && Number.isFinite(Number(s.price)))
-        .map(s => ({
-          label: s.label || amountOf(s) || '',
-          amount: amountOf(s),
-          price: Number(s.price),
-          qty: Number(s.size_ml || s.weight_g) || null,
-        }));
-      // КБЖУ указано для первого размера — для остальных пересчитываем по объёму/весу
-      const base = sizes[0] && sizes[0].qty;
-      sizes.forEach(s => { s.k = base && s.qty ? s.qty / base : 1; });
-      if (!sizes.length) sizes = null;
+    // раздел, которого нет в списке кофейни, — добавляем из общих стилей
+    let cat = cats.find(c => c.id === raw.category_id);
+    if (!cat) {
+      const id = styles[raw.category_id] ? raw.category_id : 'other';
+      cat = cats.find(c => c.id === id) || normalizeCategory({ id }, styles, cats.length);
+      if (!cats.includes(cat)) cats.push(cat);
     }
 
-    const price = sizes ? sizes[0].price : Number(raw.price);
-    if (!Number.isFinite(price)) {
-      console.warn(`Позиция «${raw.name}» пропущена: нет цены`, raw);
+    const sizes = (Array.isArray(raw.variants) ? raw.variants : [])
+      .filter(v => v && num(v.price) !== null)
+      .map((v, i) => ({
+        id: str(v.variant_id) || String(i),
+        label: str(v.measure) || `Вариант ${i + 1}`,
+        amount: str(v.measure),
+        price: num(v.price),
+        nutrition: normalizeNutrition(v.nutrition),
+      }));
+    if (!sizes.length) {
+      console.warn(`Позиция «${raw.name}» пропущена: нет вариантов с ценой`, raw);
       return null;
     }
 
     // id нужен для заказа; если его нет — берём название
-    let id = String(raw.id || raw.name);
+    let id = str(raw.id) || String(raw.name);
     while (usedIds.has(id)) id += '_';
     usedIds.add(id);
 
-    const n = raw.nutrition;
-    const num = v => (Number.isFinite(Number(v)) && v !== null && v !== '' ? Number(v) : null);
-    const nutrition = n && typeof n === 'object'
-      ? { kcal: num(n.kcal), p: num(n.protein), f: num(n.fat), c: num(n.carbs) }
-      : null;
-
+    const prep = num(raw.prep_time_min);
     return {
       id,
       cat: cat.id,
       name: String(raw.name),
-      short: raw.short || '',
-      desc: raw.description || '',
-      emoji: raw.emoji || cat.emoji,
-      image: raw.image || null,
-      badge: raw.badge || null,
-      price,
-      oldPrice: num(raw.old_price),
+      desc: str(raw.description),
+      image: str(raw.image_url),
+      ing: Array.isArray(raw.ingredients) ? raw.ingredients.filter(present).map(String) : [],
+      prep,                                    // null — не показываем
+      prepEstimate: prep ?? cat.prep,          // для расчёта времени заказа
+      special: raw.is_special === true,
       sizes,
-      amount: sizes ? null : amountOf(raw),
-      nutrition: nutrition && Object.values(nutrition).some(v => v !== null) ? nutrition : null,
-      ing: Array.isArray(raw.ingredients) ? raw.ingredients.map(String) : [],
-      prep: num(raw.prep_min) || cat.prep,
+      price: sizes[0].price,
     };
   }
 
-  async function getMenu(cafe, categories) {
+  async function getMenu(cafe, styles) {
     const raw = (await getJSON(ENDPOINTS.menu(cafe))) || {};
-    const catsById = Object.fromEntries(categories.map(c => [c.id, c]));
-    const info = raw.cafe || {};
-    const usedIds = new Set();
 
+    const cats = (Array.isArray(raw.categories) ? raw.categories : [])
+      .filter(c => c && present(c.id))
+      .map((c, i) => normalizeCategory(c, styles, i));
+
+    const usedIds = new Set();
     const items = (Array.isArray(raw.items) ? raw.items : [])
-      .map((it, i) => normalizeItem(it, i, catsById, usedIds))
+      .map((it, i) => normalizeItem(it, i, cats, styles, usedIds))
       .filter(Boolean);
 
-    const ids = new Set(items.map(i => i.id));
-    const specials = (Array.isArray(raw.specials) ? raw.specials : [])
-      .filter(s => s && ids.has(String(s.item)))
-      .map(s => ({ label: s.label || 'Сегодня', id: String(s.item) }));
-
-    return {
-      cafe: {
-        id: cafe.id,
-        name: info.name || cafe.name || cafe.id,
-        address: info.address || '',
-        city: info.city || '',
-        hours: info.hours || '',
-        logo: info.logo || null,
-      },
-      currency: raw.currency || 'KZT',
-      items,
-      specials,
-    };
+    cats.sort((a, b) => a.order - b.order);
+    return { cafe, currency: cafe.currency, categories: cats, items };
   }
 
-  return { getCategories, getCafes, getMenu, DataError };
+  return { getStyles, getCafes, getMenu, DataError };
 })();
